@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} | F1 Blog{% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{ post.title }}</h1>
+    <p class="text-muted">By {{ post.author }} | {{ post.created_on|date:"F j, Y" }}</p>
+    <hr>
+    <div>{{ post.content|linebreaks }}</div>
+</article>
+<a href="{% url 'home' %}" class="btn btn-secondary mt-3">&larr; Back to posts</a>
+{% endblock %}

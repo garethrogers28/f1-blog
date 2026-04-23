@@ -1,10 +1,18 @@
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
+
+from .models import Post
 
 
 def home(request):
-    return render(request, 'home.html')
+    posts = Post.objects.all()
+    return render(request, 'home.html', {'posts': posts})
+
+
+def post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    return render(request, 'blog/post_detail.html', {'post': post})
 
 
 def register(request):
