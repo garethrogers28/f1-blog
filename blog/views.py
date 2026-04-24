@@ -1,9 +1,11 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CommentForm, CustomUserCreationForm
-from .models import Post
+from .models import Comment, Post
 
 
 def home(request):
@@ -29,6 +31,24 @@ def post_detail(request, slug):
         form = CommentForm()
     return render(request, 'blog/post_detail.html', {
         'post': post, 'comments': comments, 'form': form,
+    })
+
+
+@login_required
+def edit_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if comment.author != request.user:
+        return HttpResponseForbidden()
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Comment updated successfully.')
+            return redirect('post_detail', slug=comment.post.slug)
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, 'blog/edit_comment.html', {
+        'form': form, 'comment': comment,
     })
 
 

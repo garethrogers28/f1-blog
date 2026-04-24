@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Comment | F1 Blog{% endblock %}
+
+{% block content %}
+<h2>Edit Comment</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <textarea name="body" class="form-control" rows="3" required>{{ form.instance.body }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="{% url 'post_detail' comment.post.slug %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
