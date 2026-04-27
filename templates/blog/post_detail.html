@@ -6,6 +6,9 @@
 <article>
     <h1>{{ post.title }}</h1>
     <p class="text-muted">By {{ post.author }} | {{ post.created_on|date:"F j, Y" }}</p>
+    {% if post.featured_image %}
+    <img src="{{ post.featured_image.url }}" class="img-fluid rounded mb-3" alt="{{ post.title }}">
+    {% endif %}
     <hr>
     <div>{{ post.content|linebreaks }}</div>
 </article>
