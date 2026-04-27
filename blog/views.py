@@ -52,6 +52,19 @@ def edit_comment(request, pk):
     })
 
 
+@login_required
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if comment.author != request.user:
+        return HttpResponseForbidden()
+    if request.method == 'POST':
+        slug = comment.post.slug
+        comment.delete()
+        messages.success(request, 'Comment deleted successfully.')
+        return redirect('post_detail', slug=slug)
+    return render(request, 'blog/delete_comment.html', {'comment': comment})
+
+
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
