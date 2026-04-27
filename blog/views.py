@@ -19,6 +19,7 @@ def home(request):
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     comments = post.comments.all()
+    liked = post.likes.filter(id=request.user.id).exists() if request.user.is_authenticated else False
     if request.method == 'POST' and request.user.is_authenticated:
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -32,6 +33,7 @@ def post_detail(request, slug):
         form = CommentForm()
     return render(request, 'blog/post_detail.html', {
         'post': post, 'comments': comments, 'form': form,
+        'liked': liked, 'like_count': post.likes.count(),
     })
 
 
@@ -64,6 +66,16 @@ def delete_comment(request, pk):
         messages.success(request, 'Comment deleted successfully.')
         return redirect('post_detail', slug=slug)
     return render(request, 'blog/delete_comment.html', {'comment': comment})
+
+
+@login_required
+def like_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+    return redirect('post_detail', slug=slug)
 
 
 def register(request):

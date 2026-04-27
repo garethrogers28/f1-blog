@@ -10,6 +10,7 @@ class Post(models.Model):
     excerpt = models.TextField(max_length=300, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
 
     class Meta:
         ordering = ['-created_on']
