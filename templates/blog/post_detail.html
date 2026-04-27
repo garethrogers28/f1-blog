@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ post.title }} | F1 Blog{% endblock %}
 
@@ -8,6 +9,8 @@
     <p class="text-muted">By {{ post.author }} | {{ post.created_on|date:"F j, Y" }}</p>
     {% if post.featured_image %}
     <img src="{{ post.featured_image.url }}" class="img-fluid rounded mb-3" alt="{{ post.title }}">
+    {% else %}
+    <img src="{% static 'images/placeholder.svg' %}" class="img-fluid rounded mb-3" alt="No image available">
     {% endif %}
     <hr>
     <div>{{ post.content|linebreaks }}</div>
