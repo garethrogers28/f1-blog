@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+if os.path.exists(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'env.py')):
+    import env  # noqa: F401
+
 import cloudinary
 import dj_database_url
 
