@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cloudinary_filters %}
 
 {% block title %}{{ post.title }} | F1 Blog{% endblock %}
 
@@ -8,9 +9,11 @@
     <h1>{{ post.title }}</h1>
     <p class="text-muted">By {{ post.author }} | {{ post.created_on|date:"F j, Y" }}</p>
     {% if post.featured_image %}
-    <img src="{{ post.featured_image.url }}" class="img-fluid rounded mb-3" alt="{{ post.title }}">
+    <img src="{{ post.featured_image.url|cloudinary_transform:'w_800,h_450,c_fill,q_auto,f_auto' }}"
+        class="img-fluid rounded mb-3" alt="{{ post.title }}" width="800" height="450">
     {% else %}
-    <img src="{% static 'images/placeholder.svg' %}" class="img-fluid rounded mb-3" alt="No image available">
+    <img src="{% static 'images/placeholder.svg' %}" class="img-fluid rounded mb-3" alt="No image available" width="800"
+        height="450">
     {% endif %}
     <hr>
     <div>{{ post.content|linebreaks }}</div>

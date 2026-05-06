@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cloudinary_filters %}
 
 {% block title %}Home | F1 Blog{% endblock %}
 
@@ -9,12 +10,14 @@
 
 <div class="row">
     {% for post in posts %}
-    <div class="col-md-6 mb-4">
+    <div class="col-md-4 mb-4">
         <div class="card h-100">
             {% if post.featured_image %}
-            <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
+            <img src="{{ post.featured_image.url|cloudinary_transform:'w_600,h_338,c_fill,q_auto,f_auto' }}"
+                class="card-img-top" alt="{{ post.title }}" width="600" height="338">
             {% else %}
-            <img src="{% static 'images/placeholder.svg' %}" class="card-img-top" alt="No image available">
+            <img src="{% static 'images/placeholder.svg' %}" class="card-img-top" alt="No image available" width="600"
+                height="338">
             {% endif %}
             <div class="card-body">
                 <h2 class="card-title h5">
@@ -26,7 +29,8 @@
                 {% else %}
                 <p class="card-text">{{ post.content|truncatewords:30 }}</p>
                 {% endif %}
-                <a href="{% url 'post_detail' post.slug %}" class="btn btn-outline-primary btn-sm">Read more</a>
+                <a href="{% url 'post_detail' post.slug %}" class="btn btn-outline-primary btn-sm">Read more <span
+                        class="visually-hidden">about {{ post.title }}</span></a>
             </div>
         </div>
     </div>
