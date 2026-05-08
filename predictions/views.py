@@ -51,3 +51,21 @@ def race_detail(request, slug):
         'prediction': prediction,
         'deadline_passed': deadline_passed,
     })
+
+def leaderboard(request):
+    completed_races = Race.objects.filter(is_completed=True)
+    predictions = Prediction.objects.filter(race__in=completed_races).select_related('user', 'race')
+
+    user_scores = {}
+    for prediction in predictions:
+        username = prediction.user.username
+        score = prediction.calculate_score()
+        if username not in user_scores:
+            user_scores[username] = 0
+        user_scores[username] += score
+
+    standings = sorted(user_scores.items(), key=lambda x: x[1], reverse=True)
+
+    return render(request, 'predictions/leaderboard.html', {
+        'standings': standings,
+    })

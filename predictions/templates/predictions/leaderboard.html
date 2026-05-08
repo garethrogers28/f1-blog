@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Leaderboard | F1 Blog{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Leaderboard</h1>
+<p class="lead text-center">Rankings based on prediction scores across all completed races.</p>
+
+{% if standings %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>User</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for username, score in standings %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ username }}</td>
+                    <td>{{ score }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<p class="text-muted text-center">No completed races yet. Check back after results are in!</p>
+{% endif %}
+{% endblock %}

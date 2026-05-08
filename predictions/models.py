@@ -43,6 +43,22 @@ class Prediction(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.race.name}"
     
+    def calculate_score(self):
+        try:
+            result = self.race.result
+        except RaceResult.DoesNotExist:
+            return 0
+        score = 0
+        if self.pole_driver == result.pole_driver:
+            score += 5
+        if self.p1_driver == result.p1_driver:
+            score += 10
+        if self.p2_driver == result.p2_driver:
+            score += 5
+        if self.p3_driver == result.p3_driver:
+            score += 3
+        return score
+    
 class RaceResult(models.Model):
     race = models.OneToOneField(Race, on_delete=models.CASCADE, related_name='result')
     pole_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='pole_results')
