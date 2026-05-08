@@ -26,4 +26,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', blog_views.register, name='register'),
     path('', include('blog.urls')),
+    path('', include('predictions.urls')),
 ]

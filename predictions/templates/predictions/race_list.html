@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Upcoming Races | F1 Blog{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Upcoming Races</h1>
+<p class="lead text-center">Select a race to submit your predictions.</p>
+
+{% if upcoming_races %}
+<div class="row">
+    {% for race in upcoming_races %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title h5">{{ race.name }}</h2>
+                <p class="text-muted small">{{ race.circuit }}</p>
+                <p><strong>Race Date:</strong> {{ race.date|date:"F j, Y" }}</p>
+                <p><strong>Deadline:</strong> {{ race.prediction_deadline|date:"F j, Y H:i" }}</p>
+                <a href="{% url 'race_detail' race.slug %}" class="btn btn-outline-primary btn-sm">Make Prediction</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-muted text-center">No upcoming races scheduled.</p>
+{% endif %}
+
+{% if past_races %}
+<hr>
+<h2 class="text-center mt-4">Past Races</h2>
+<div class="row">
+    {% for race in past_races %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title h5">{{ race.name }}</h2>
+                <p class="text-muted small">{{ race.circuit }}</p>
+                <p>{{ race.date|date:"F j, Y" }}</p>
+                {% if race.is_completed %}
+                <span class="badge bg-success">Completed</span>
+                {% else %}
+                <span class="badge bg-secondary">Awaiting Results</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
