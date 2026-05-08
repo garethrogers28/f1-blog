@@ -30,6 +30,23 @@ body {
     color: var(--white) !important;
 }
 
+/* Active nav link */
+.navbar .nav-link.active {
+    color: var(--white) !important;
+    font-weight: 600;
+}
+
+/* Username badge */
+.navbar-user-badge {
+    background-color: var(--red);
+    color: var(--white);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
 /* Buttons */
 .btn-outline-primary {
     color: var(--red);
