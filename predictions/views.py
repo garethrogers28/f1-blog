@@ -84,3 +84,31 @@ def profile(request):
     return render(request, 'predictions/profile.html', {
         'user_profile': user_profile,
     })
+
+
+@login_required
+def edit_profile(request):
+    """
+    Allows the logged-in user to edit their profile (display name, favourite team, favourite driver).
+    - Uses get_or_create so a profile exists even if it's the user's first visit.
+    - On POST: validates and saves the form, then redirects back to the dashboard with a success message.
+    - On GET: shows the form pre-filled with the user's current profile data.
+    """
+    # Get or create the user's profile
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        # User submitted the form — bind POST data to the existing profile instance
+        form = UserProfileForm(request.POST, instance=user_profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully!')
+            # Redirect back to the dashboard so they see their changes
+            return redirect('profile')
+    else:
+        # GET request — show the form pre-filled with their current data
+        form = UserProfileForm(instance=user_profile)
+
+    return render(request, 'predictions/edit_profile.html', {
+        'form': form,
+    })
