@@ -49,13 +49,16 @@ class Prediction(models.Model):
         except RaceResult.DoesNotExist:
             return 0
         score = 0
-        if self.pole_driver == result.pole_driver:
+        # Using _id compares the foreign key IDs directly in Python
+        # This avoids loading the full Driver object from the database
+        # Django automatically creates _id attributes for ForeignKey fields
+        if self.pole_driver_id == result.pole_driver_id:
             score += 5
-        if self.p1_driver == result.p1_driver:
+        if self.p1_driver_id == result.p1_driver_id:
             score += 10
-        if self.p2_driver == result.p2_driver:
+        if self.p2_driver_id == result.p2_driver_id:
             score += 5
-        if self.p3_driver == result.p3_driver:
+        if self.p3_driver_id == result.p3_driver_id:
             score += 3
         return score
     
