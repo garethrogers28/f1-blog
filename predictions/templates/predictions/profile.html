@@ -5,7 +5,12 @@
 {% block content %}
 <h1 class="text-center">My Garage</h1>
 
-<div class="row justify-content-center">
+{% if user_profile.display_name %}
+<p class="lead text-center">Welcome, {{ user_profile.display_name }}!</p>
+{% endif %}
+
+<!-- Profile details card -->
+<div class="row justify-content-center mb-4">
     <div class="col-md-6">
         <div class="card">
             <div class="card-body text-center">
@@ -19,4 +24,141 @@
         </div>
     </div>
 </div>
+
+<!-- Stats cards -->
+<div class="row justify-content-center mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h2 class="h6">Predictions Made</h2>
+                <p class="display-6">{{ total_predictions }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h2 class="h6">Total Points</h2>
+                <p class="display-6">{{ total_score }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h2 class="h6">Correct Picks</h2>
+                <p class="display-6">{{ correct_picks }}/{{ total_picks }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h2 class="h6">League Position</h2>
+                <p class="display-6">
+                    {% if league_position %}{{ league_position }}/{{ total_players }}{% else %}N/A{% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Upcoming races status -->
+{% if upcoming_status %}
+<h2 class="text-center mt-4">Upcoming Races</h2>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Race</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in upcoming_status %}
+                <tr>
+                    <td>{{ entry.race.name }}</td>
+                    <td>{{ entry.race.date|date:"F j, Y" }}</td>
+                    <td>
+                        {% if entry.submitted %}
+                        <span class="badge bg-success">Submitted</span>
+                        {% else %}
+                        <span class="badge bg-warning text-dark">Not Submitted</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if not entry.deadline_passed %}
+                        <a href="{% url 'race_detail' entry.race.slug %}" class="btn btn-outline-primary btn-sm">
+                            {% if entry.submitted %}Edit{% else %}Predict{% endif %}
+                        </a>
+                        {% else %}
+                        <span class="text-muted small">Locked</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+
+<!-- Prediction history -->
+<h2 class="text-center mt-4">Prediction History</h2>
+
+{% if history %}
+{% for entry in history %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h3 class="h5">{{ entry.prediction.race.name }}</h3>
+        <p class="text-muted small">{{ entry.prediction.race.circuit }} — {{ entry.prediction.race.date|date:"F j, Y" }}
+        </p>
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Your Prediction</th>
+                        <th>Actual Result</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pole</td>
+                        <td>{{ entry.prediction.pole_driver }}</td>
+                        <td>{{ entry.result.pole_driver }}</td>
+                        <td>{{ entry.pole_pts }}</td>
+                    </tr>
+                    <tr>
+                        <td>1st</td>
+                        <td>{{ entry.prediction.p1_driver }}</td>
+                        <td>{{ entry.result.p1_driver }}</td>
+                        <td>{{ entry.p1_pts }}</td>
+                    </tr>
+                    <tr>
+                        <td>2nd</td>
+                        <td>{{ entry.prediction.p2_driver }}</td>
+                        <td>{{ entry.result.p2_driver }}</td>
+                        <td>{{ entry.p2_pts }}</td>
+                    </tr>
+                    <tr>
+                        <td>3rd</td>
+                        <td>{{ entry.prediction.p3_driver }}</td>
+                        <td>{{ entry.result.p3_driver }}</td>
+                        <td>{{ entry.p3_pts }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="text-end"><strong>Race Score: {{ entry.score }}/23</strong></p>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<p class="text-muted text-center">No completed race predictions yet.</p>
+{% endif %}
 {% endblock %}

@@ -1,3 +1,5 @@
+from .services import get_user_stats, get_league_position, get_upcoming_status
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
@@ -5,7 +7,6 @@ from django.utils import timezone
 
 from .forms import PredictionForm, UserProfileForm
 from .models import Race, Prediction, UserProfile
-
 
 def race_list(request):
     upcoming_races = Race.objects.filter(date__gte=timezone.now().date())
@@ -72,17 +73,25 @@ def leaderboard(request):
 
 @login_required
 def profile(request):
-    """
-    Shows the user's dashboard ("My Garage").
-    - If the user doesn't have a UserProfile yet, it is created automatically.
-    - Loads the profile and passes it to the template for display/editing.
-    """
-    # Get or create the user's profile
-    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    """Coordinates dashboard data and renders the template."""
+    # Ensure profile exists
+    user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
-    # Render the dashboard template, passing the profile object
+    # Capture timezone.now() once for consistency across this request
+    now = timezone.now()
+
+    # Get stats from the service layer
+    stats = get_user_stats(request.user)
+    league_position, total_players = get_league_position(request.user)
+    upcoming_status = get_upcoming_status(request.user, now)
+
     return render(request, 'predictions/profile.html', {
         'user_profile': user_profile,
+        'league_position': league_position,
+        'total_players': total_players,
+        'upcoming_status': upcoming_status,
+        # Unpacks: total_predictions, total_score, correct_picks, total_picks, history
+        **stats,
     })
 
 
