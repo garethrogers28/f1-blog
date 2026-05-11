@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Driver, Race, Prediction, RaceResult
+from .models import Driver, Race, Prediction, RaceResult, UserProfile
 
 
 @admin.register(Driver)
@@ -25,3 +25,7 @@ class PredictionAdmin(admin.ModelAdmin):
 @admin.register(RaceResult)
 class RaceResultAdmin(admin.ModelAdmin):
     list_display = ('race', 'pole_driver', 'p1_driver', 'p2_driver', 'p3_driver')
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'display_name', 'favourite_team', 'favourite_driver')
