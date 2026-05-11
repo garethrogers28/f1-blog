@@ -43,9 +43,10 @@ def get_user_stats(user):
         'pole_driver', 'p1_driver', 'p2_driver', 'p3_driver'
     )
     # Only include races that are marked complete AND have a result attached
+    # Order by race date descending (newest race first)
     completed = all_predictions.filter(
         race__is_completed=True, race__result__isnull=False
-    )
+    ).order_by('-race__date')
 
     total_score = 0
     correct_picks = 0
