@@ -42,7 +42,10 @@ def get_user_stats(user):
         'race', 'race__result',
         'pole_driver', 'p1_driver', 'p2_driver', 'p3_driver'
     )
-    completed = all_predictions.filter(race__is_completed=True)
+    # Only include races that are marked complete AND have a result attached
+    completed = all_predictions.filter(
+        race__is_completed=True, race__result__isnull=False
+    )
 
     total_score = 0
     correct_picks = 0
@@ -87,7 +90,10 @@ def get_league_standings():
 
     Returns a sorted list of (user_id, score) tuples, highest score first.
     """
-    completed_races = Race.objects.filter(is_completed=True)
+    # Only include races that are marked complete AND have a result attached
+    completed_races = Race.objects.filter(
+        is_completed=True, result__isnull=False
+    )
     preds = Prediction.objects.filter(
         race__in=completed_races
     ).select_related('user', 'race', 'race__result')
