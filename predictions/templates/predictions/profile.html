@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}My Garage | F1 Blog{% endblock %}
+
+{% block content %}
+<h1 class="text-center">My Garage</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h2 class="h5">Profile Details</h2>
+                <p><strong>Username:</strong> {{ user_profile.user.username }}</p>
+                <p><strong>Display Name:</strong> {{ user_profile.display_name|default:"Not set" }}</p>
+                <p><strong>Favourite Team:</strong> {{ user_profile.favourite_team|default:"Not set" }}</p>
+                <p><strong>Favourite Driver:</strong> {{ user_profile.favourite_driver|default:"Not set" }}</p>
+                <a href="#" class="btn btn-outline-primary btn-sm disabled">Edit Profile (coming next)</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
