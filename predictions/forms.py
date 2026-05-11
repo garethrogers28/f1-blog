@@ -20,6 +20,28 @@ class PredictionForm(forms.ModelForm):
             self.fields[field_name].queryset = drivers
             self.fields[field_name].widget.attrs['class'] = 'form-select'
 
+    def clean(self):
+        # Run the parent clean to get the cleaned_data dict
+        cleaned_data = super().clean()
+
+        # Collect podium picks (pole can still match the winner, that's normal)
+        podium = [
+            cleaned_data.get('p1_driver'),
+            cleaned_data.get('p2_driver'),
+            cleaned_data.get('p3_driver'),
+        ]
+
+        # Filter out any None values (in case a field is missing)
+        filled = [driver for driver in podium if driver is not None]
+
+        # If we have duplicates, the set will be shorter than the list
+        if len(set(filled)) != len(filled):
+            raise forms.ValidationError(
+                "1st, 2nd and 3rd place must all be different drivers."
+            )
+
+        return cleaned_data
+
 # List of F1 teams for the dropdown
 # First item is an empty option shown by default
 TEAM_CHOICES = [('', '--- Select a team ---')] + [

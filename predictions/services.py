@@ -7,6 +7,19 @@ the data they need to render templates.
 from .models import Prediction, Race
 
 
+def save_prediction(user, race, form):
+    """
+    Save a validated PredictionForm, attaching the given user and race.
+
+    Returns the saved Prediction instance.
+    """
+    prediction = form.save(commit=False)
+    prediction.user = user
+    prediction.race = race
+    prediction.save()
+    return prediction
+
+
 def get_user_stats(user):
     """
     Calculate stats for a user's completed predictions.

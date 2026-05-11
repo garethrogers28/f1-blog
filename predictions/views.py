@@ -10,21 +10,36 @@ from .services import (
     get_league_position,
     get_league_standings,
     get_upcoming_status,
+    save_prediction,
 )
 
 def race_list(request):
-    upcoming_races = Race.objects.filter(date__gte=timezone.now().date())
-    past_races = Race.objects.filter(date__lt=timezone.now().date())
+    now = timezone.now()
+    upcoming_races = Race.objects.filter(date__gte=now.date())
+    past_races = Race.objects.filter(date__lt=now.date())
+
+    # Get IDs of races the logged-in user has already predicted, so the
+    # template can show "Edit Prediction" instead of "Make Prediction"
+    predicted_race_ids = set()
+    if request.user.is_authenticated:
+        predicted_race_ids = set(
+            Prediction.objects.filter(user=request.user, race__in=upcoming_races)
+            .values_list('race_id', flat=True)
+        )
+
     return render(request, 'predictions/race_list.html', {
         'upcoming_races': upcoming_races,
         'past_races': past_races,
+        'predicted_race_ids': predicted_race_ids,
     })
 
 
 @login_required
 def race_detail(request, slug):
     race = get_object_or_404(Race, slug=slug)
-    prediction = Prediction.objects.filter(user=request.user, race=race).first()
+    prediction = Prediction.objects.filter(
+        user=request.user, race=race
+    ).select_related('pole_driver', 'p1_driver', 'p2_driver', 'p3_driver').first()
     deadline_passed = timezone.now() > race.prediction_deadline
 
     if request.method == 'POST':
@@ -32,23 +47,14 @@ def race_detail(request, slug):
             messages.error(request, 'The prediction deadline has passed.')
             return redirect('race_detail', slug=slug)
 
-        if prediction:
-            form = PredictionForm(request.POST, instance=prediction)
-        else:
-            form = PredictionForm(request.POST)
-
+        # ModelForm handles instance=None (creates new) or existing instance (updates)
+        form = PredictionForm(request.POST, instance=prediction)
         if form.is_valid():
-            pred = form.save(commit=False)
-            pred.user = request.user
-            pred.race = race
-            pred.save()
+            save_prediction(request.user, race, form)
             messages.success(request, 'Prediction submitted successfully!')
             return redirect('race_detail', slug=slug)
     else:
-        if prediction:
-            form = PredictionForm(instance=prediction)
-        else:
-            form = PredictionForm()
+        form = PredictionForm(instance=prediction)
 
     return render(request, 'predictions/race_detail.html', {
         'race': race,
