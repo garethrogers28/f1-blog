@@ -41,6 +41,10 @@
                             href="{% url 'leaderboard' %}">Leaderboard</a>
                     </li>
                     {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}"
+                            href="{% url 'profile' %}">My Garage</a>
+                    </li>
                     <li class="nav-item d-flex align-items-center">
                         <form method="post" action="{% url 'logout' %}" class="d-inline">
                             {% csrf_token %}
