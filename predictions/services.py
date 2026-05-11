@@ -4,7 +4,13 @@ Service layer for the predictions app.
 Keeps business logic out of views. Views call these functions to get
 the data they need to render templates.
 """
-from .models import Prediction, Race
+from .models import Prediction, Race, UserProfile
+
+
+def get_or_create_profile(user):
+    """Return the user's profile, creating an empty one if it doesn't exist."""
+    profile, _ = UserProfile.objects.get_or_create(user=user)
+    return profile
 
 
 def save_prediction(user, race, form):

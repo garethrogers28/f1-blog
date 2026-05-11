@@ -4,13 +4,14 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
 from .forms import PredictionForm, UserProfileForm
-from .models import Race, Prediction, UserProfile
+from .models import Race, Prediction
 from .services import (
     get_user_stats,
     get_league_position,
     get_league_standings,
     get_upcoming_status,
     save_prediction,
+    get_or_create_profile,
 )
 
 def race_list(request):
@@ -86,8 +87,8 @@ def leaderboard(request):
 @login_required
 def profile(request):
     """Coordinates dashboard data and renders the template."""
-    # Ensure profile exists
-    user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    # Ensure profile exists (creates an empty one on first visit)
+    user_profile = get_or_create_profile(request.user)
 
     # Capture timezone.now() once for consistency across this request
     now = timezone.now()
@@ -116,7 +117,7 @@ def edit_profile(request):
     - On GET: shows the form pre-filled with the user's current profile data.
     """
     # Get or create the user's profile
-    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    user_profile = get_or_create_profile(request.user)
 
     if request.method == 'POST':
         # User submitted the form — bind POST data to the existing profile instance
