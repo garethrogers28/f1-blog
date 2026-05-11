@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
-from .forms import PredictionForm
-from .models import Race, Prediction
+from .forms import PredictionForm, UserProfileForm
+from .models import Race, Prediction, UserProfile
 
 
 def race_list(request):
@@ -68,4 +68,19 @@ def leaderboard(request):
 
     return render(request, 'predictions/leaderboard.html', {
         'standings': standings,
+    })
+
+@login_required
+def profile(request):
+    """
+    Shows the user's dashboard ("My Garage").
+    - If the user doesn't have a UserProfile yet, it is created automatically.
+    - Loads the profile and passes it to the template for display/editing.
+    """
+    # Get or create the user's profile
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+
+    # Render the dashboard template, passing the profile object
+    return render(request, 'predictions/profile.html', {
+        'user_profile': user_profile,
     })
