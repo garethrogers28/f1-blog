@@ -68,3 +68,25 @@ class RaceResult(models.Model):
 
     def __str__(self):
         return f"Result: {self.race.name}"
+    
+class UserProfile(models.Model):
+    # Each user gets exactly one profile (OneToOneField)
+    # If the user is deleted, their profile is deleted too (CASCADE)
+    user = models.OneToOneField(
+        'auth.User', on_delete=models.CASCADE, related_name='profile'
+    )
+    # Optional display name shown instead of username on the dashboard
+    display_name = models.CharField(max_length=100, blank=True)
+    # User's favourite team stored as text (blank=True means it's optional)
+    favourite_team = models.CharField(max_length=200, blank=True)
+    # User's favourite driver linked to the Driver model
+    # SET_NULL means if a driver is deleted, this field becomes None
+    # null=True allows the database column to be empty
+    # blank=True allows the form field to be left empty
+    favourite_driver = models.ForeignKey(
+        Driver, on_delete=models.SET_NULL,
+        null=True, blank=True, related_name='fans'
+    )
+
+    def __str__(self):
+        return f"{self.user.username}'s profile"
