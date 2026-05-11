@@ -1,5 +1,3 @@
-from .services import get_user_stats, get_league_position, get_upcoming_status
-
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
@@ -7,6 +5,12 @@ from django.utils import timezone
 
 from .forms import PredictionForm, UserProfileForm
 from .models import Race, Prediction, UserProfile
+from .services import (
+    get_user_stats,
+    get_league_position,
+    get_league_standings,
+    get_upcoming_status,
+)
 
 def race_list(request):
     upcoming_races = Race.objects.filter(date__gte=timezone.now().date())
@@ -54,21 +58,23 @@ def race_detail(request, slug):
     })
 
 def leaderboard(request):
-    completed_races = Race.objects.filter(is_completed=True)
-    predictions = Prediction.objects.filter(race__in=completed_races).select_related('user', 'race')
+    # Get sorted (user_id, score) tuples from the service layer
+    standings = get_league_standings()
 
-    user_scores = {}
-    for prediction in predictions:
-        username = prediction.user.username
-        score = prediction.calculate_score()
-        if username not in user_scores:
-            user_scores[username] = 0
-        user_scores[username] += score
+    # Look up usernames for the user IDs in one query
+    from django.contrib.auth.models import User
+    user_map = dict(
+        User.objects.filter(id__in=[uid for uid, _ in standings])
+        .values_list('id', 'username')
+    )
 
-    standings = sorted(user_scores.items(), key=lambda x: x[1], reverse=True)
+    # Build (username, score) list for the template
+    display_standings = [
+        (user_map.get(uid, 'Unknown'), score) for uid, score in standings
+    ]
 
     return render(request, 'predictions/leaderboard.html', {
-        'standings': standings,
+        'standings': display_standings,
     })
 
 @login_required
