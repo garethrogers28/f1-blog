@@ -14,7 +14,7 @@
                 <p><strong>Display Name:</strong> {{ user_profile.display_name|default:"Not set" }}</p>
                 <p><strong>Favourite Team:</strong> {{ user_profile.favourite_team|default:"Not set" }}</p>
                 <p><strong>Favourite Driver:</strong> {{ user_profile.favourite_driver|default:"Not set" }}</p>
-                <a href="#" class="btn btn-outline-primary btn-sm disabled">Edit Profile (coming next)</a>
+                <a href="{% url 'edit_profile' %}" class="btn btn-outline-primary btn-sm">Edit Profile</a>
             </div>
         </div>
     </div>
