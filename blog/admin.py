@@ -1,3 +1,8 @@
+
+"""
+Admin configuration for the blog app models.
+Registers Post and Comment with custom admin classes.
+"""
 from django.contrib import admin
 from .models import Post, Comment
 

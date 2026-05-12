@@ -3,6 +3,10 @@ from django.db import models
 # Create your models here.
 
 class Driver(models.Model):
+    """
+    Represents an F1 driver with a name, team, and car number.
+    Used for predictions and results.
+    """
     name = models.CharField(max_length=200)
     team = models.CharField(max_length=200)
     number = models.IntegerField()
@@ -14,6 +18,10 @@ class Driver(models.Model):
         return f"{self.name} ({self.team})"
     
 class Race(models.Model):
+    """
+    Represents a single F1 race event.
+    Stores race name, circuit, date, prediction deadline, and completion status.
+    """
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     circuit = models.CharField(max_length=200)
@@ -29,6 +37,11 @@ class Race(models.Model):
     
 
 class Prediction(models.Model):
+    """
+    Stores a user's prediction for a specific race.
+    Includes pole, 1st, 2nd, and 3rd place driver picks.
+    Has a calculate_score() method to score predictions against results.
+    """
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='predictions')
     race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='predictions')
     pole_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='pole_predictions')
@@ -63,6 +76,10 @@ class Prediction(models.Model):
         return score
     
 class RaceResult(models.Model):
+    """
+    Stores the official result for a race (pole, 1st, 2nd, 3rd drivers).
+    Linked one-to-one with a Race.
+    """
     race = models.OneToOneField(Race, on_delete=models.CASCADE, related_name='result')
     pole_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='pole_results')
     p1_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='p1_results')
@@ -73,6 +90,10 @@ class RaceResult(models.Model):
         return f"Result: {self.race.name}"
     
 class UserProfile(models.Model):
+    """
+    Extends the built-in User model with F1-specific profile info:
+    display name, favourite team, and favourite driver.
+    """
     # Each user gets exactly one profile (OneToOneField)
     # If the user is deleted, their profile is deleted too (CASCADE)
     user = models.OneToOneField(

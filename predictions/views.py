@@ -15,6 +15,10 @@ from .services import (
 )
 
 def race_list(request):
+    """
+    Display all races split into upcoming and past.
+    Shows which races the user has already predicted (for button logic).
+    """
     now = timezone.now()
     upcoming_races = Race.objects.filter(date__gte=now.date())
     past_races = Race.objects.filter(date__lt=now.date())
@@ -37,6 +41,11 @@ def race_list(request):
 
 @login_required
 def race_detail(request, slug):
+    """
+    Show race details and prediction form for the logged-in user.
+    Handles both new submissions and edits before the deadline.
+    Locks the form after the prediction deadline.
+    """
     race = get_object_or_404(Race, slug=slug)
     prediction = Prediction.objects.filter(
         user=request.user, race=race
@@ -65,7 +74,9 @@ def race_detail(request, slug):
     })
 
 def leaderboard(request):
-    # Get sorted (user_id, score) tuples from the service layer
+    """
+    Display the league leaderboard with usernames and scores.
+    """
     standings = get_league_standings()
 
     # Look up usernames for the user IDs in one query
@@ -86,8 +97,11 @@ def leaderboard(request):
 
 @login_required
 def profile(request):
-    """Coordinates dashboard data and renders the template."""
-    # Ensure profile exists (creates an empty one on first visit)
+    """
+    Display the user's personal dashboard (My Garage):
+    - Stats, league position, upcoming races, prediction history.
+    Ensures a profile exists for the user.
+    """
     user_profile = get_or_create_profile(request.user)
 
     # Capture timezone.now() once for consistency across this request
@@ -111,12 +125,9 @@ def profile(request):
 @login_required
 def edit_profile(request):
     """
-    Allows the logged-in user to edit their profile (display name, favourite team, favourite driver).
-    - Uses get_or_create so a profile exists even if it's the user's first visit.
-    - On POST: validates and saves the form, then redirects back to the dashboard with a success message.
-    - On GET: shows the form pre-filled with the user's current profile data.
+    Allow the user to edit their profile (display name, favourite team, favourite driver).
+    Ensures a profile exists even on first visit.
     """
-    # Get or create the user's profile
     user_profile = get_or_create_profile(request.user)
 
     if request.method == 'POST':

@@ -1,3 +1,8 @@
+
+"""
+Admin configuration for the predictions app models.
+Registers Driver, Race, Prediction, RaceResult, and UserProfile with custom admin classes.
+"""
 from django.contrib import admin
 from .models import Driver, Race, Prediction, RaceResult, UserProfile
 

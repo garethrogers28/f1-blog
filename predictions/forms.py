@@ -3,6 +3,10 @@ from .models import Prediction, Driver, UserProfile
 
 
 class PredictionForm(forms.ModelForm):
+    """
+    Form for submitting or editing a race prediction.
+    Validates that 1st, 2nd, and 3rd place drivers are unique.
+    """
     class Meta:
         model = Prediction
         fields = ['pole_driver', 'p1_driver', 'p2_driver', 'p3_driver']
@@ -60,6 +64,10 @@ TEAM_CHOICES = [('', '--- Select a team ---')] + [
 
 
 class UserProfileForm(forms.ModelForm):
+    """
+    Form for editing the user's profile (display name, favourite team, favourite driver).
+    Uses dropdowns for team and driver selection.
+    """
     # ModelForm automatically creates form fields from the UserProfile model
     class Meta:
         model = UserProfile

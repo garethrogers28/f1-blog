@@ -9,6 +9,9 @@ from .models import Comment, Post
 
 
 def home(request):
+    """
+    Display paginated list of blog posts on the home page (6 per page).
+    """
     post_list = Post.objects.all()
     paginator = Paginator(post_list, 6)
     page = request.GET.get('page')
@@ -17,6 +20,10 @@ def home(request):
 
 
 def post_detail(request, slug):
+    """
+    Display a single blog post with comments and like status.
+    Handles comment submission for authenticated users.
+    """
     post = get_object_or_404(Post, slug=slug)
     comments = post.comments.all()
     liked = post.likes.filter(id=request.user.id).exists() if request.user.is_authenticated else False
@@ -39,6 +46,10 @@ def post_detail(request, slug):
 
 @login_required
 def edit_comment(request, pk):
+    """
+    Allow the comment author to edit their own comment.
+    Only accessible to the comment's author.
+    """
     comment = get_object_or_404(Comment, pk=pk)
     if comment.author != request.user:
         return HttpResponseForbidden()
@@ -57,6 +68,10 @@ def edit_comment(request, pk):
 
 @login_required
 def delete_comment(request, pk):
+    """
+    Allow the comment author to delete their own comment.
+    Only accessible to the comment's author.
+    """
     comment = get_object_or_404(Comment, pk=pk)
     if comment.author != request.user:
         return HttpResponseForbidden()
@@ -70,6 +85,10 @@ def delete_comment(request, pk):
 
 @login_required
 def like_post(request, slug):
+    """
+    Toggle like/unlike for a post by the logged-in user.
+    Redirects back to the post detail page.
+    """
     post = get_object_or_404(Post, slug=slug)
     if post.likes.filter(id=request.user.id).exists():
         post.likes.remove(request.user)
@@ -79,6 +98,10 @@ def like_post(request, slug):
 
 
 def register(request):
+    """
+    Handle user registration using a custom user creation form.
+    On success, redirects to login page.
+    """
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
