@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Server Error | F1 Blog{% endblock %}
+{% block meta_description %}An unexpected error occurred. Please try again later.{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1>500 — Server Error</h1>
+    <p class="lead mt-3">Something went wrong on our end. Please try again later.</p>
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3">Back to Home</a>
+</div>
+{% endblock %}
