@@ -3,6 +3,7 @@
 {% load cloudinary_filters %}
 
 {% block title %}{{ post.title }} | F1 Blog{% endblock %}
+{% block meta_description %}{{ post.excerpt|default:post.content|truncatewords:25 }}{% endblock %}
 
 {% block content %}
 <article>
