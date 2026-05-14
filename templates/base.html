@@ -30,21 +30,21 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
-                                href="{% url 'home' %}">Home</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active"
+                                aria-current="page{% endif %}" href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'race_list' or request.resolver_match.url_name == 'race_detail' %}active{% endif %}"
-                                href="{% url 'race_list' %}">Races</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'race_list' or request.resolver_match.url_name == 'race_detail' %}active"
+                                aria-current="page{% endif %}" href="{% url 'race_list' %}">Races</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'leaderboard' %}active{% endif %}"
-                                href="{% url 'leaderboard' %}">Leaderboard</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'leaderboard' %}active"
+                                aria-current="page{% endif %}" href="{% url 'leaderboard' %}">Leaderboard</a>
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}"
-                                href="{% url 'profile' %}">My Garage</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'profile' %}active"
+                                aria-current="page{% endif %}" href="{% url 'profile' %}">My Garage</a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <form method="post" action="{% url 'logout' %}" class="d-inline">
@@ -54,12 +54,12 @@
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}"
-                                href="{% url 'login' %}">Login</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'login' %}active"
+                                aria-current="page{% endif %}" href="{% url 'login' %}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}"
-                                href="{% url 'register' %}">Register</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'register' %}active"
+                                aria-current="page{% endif %}" href="{% url 'register' %}">Register</a>
                         </li>
                         {% endif %}
                     </ul>

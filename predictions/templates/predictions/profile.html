@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block title %}My Garage | F1 Blog{% endblock %}
-{% block meta_description %}Your personal F1 prediction dashboard with stats, league position, and prediction history.{% endblock %}
+{% block meta_description %}Your personal F1 prediction dashboard with stats, league position, and prediction
+history.{%endblock %}
 
 {% block content %}
 <h1 class="text-center">My Garage</h1>
@@ -72,10 +73,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Race</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th scope="col">Race</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -121,10 +122,10 @@
             <table class="table table-sm" style="table-layout: fixed;">
                 <thead>
                     <tr>
-                        <th style="width: 15%;">Position</th>
-                        <th style="width: 35%;">Your Prediction</th>
-                        <th style="width: 35%;">Actual Result</th>
-                        <th style="width: 15%;">Points</th>
+                        <th scope="col" style="width: 15%;">Position</th>
+                        <th scope="col" style="width: 35%;">Your Prediction</th>
+                        <th scope="col" style="width: 35%;">Actual Result</th>
+                        <th scope="col" style="width: 15%;">Points</th>
                     </tr>
                 </thead>
                 <tbody>
