@@ -28,7 +28,7 @@
         {% if liked %}Unlike{% else %}Like{% endif %}
     </a>
     {% else %}
-    <span class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-heart"></i> Like</span>
+    <span class="btn btn-sm btn-outline-dark disabled" aria-disabled="true"><i class="bi bi-heart"></i> Like</span>
     {% endif %}
     <span class="text-muted ms-2">{{ like_count }} like{{ like_count|pluralize }}</span>
 </div>
@@ -67,6 +67,7 @@
     </form>
 </div>
 {% else %}
-<p class="mt-3"><a href="{% url 'login' %}">Log in</a> to leave a comment.</p>
+<p class="mt-3"><a href="{% url 'login' %}" class="link-dark fw-bold text-decoration-underline">Log in</a> to like and
+    leave a comment.</p>
 {% endif %}
 {% endblock %}

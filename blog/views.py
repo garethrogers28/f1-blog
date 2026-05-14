@@ -92,8 +92,10 @@ def like_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
     if post.likes.filter(id=request.user.id).exists():
         post.likes.remove(request.user)
+        messages.success(request, 'You unliked this post.')
     else:
         post.likes.add(request.user)
+        messages.success(request, 'You liked this post!')
     return redirect('post_detail', slug=slug)
 
 
