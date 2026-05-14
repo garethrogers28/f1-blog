@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class Driver(models.Model):
     """
     Represents an F1 driver with a name, team, and car number.
@@ -15,7 +13,7 @@ class Driver(models.Model):
         ordering = ['team', 'name']
 
     def __str__(self):
-        return f"{self.name} ({self.team})"
+        return f'{self.name} ({self.team})'
     
 class Race(models.Model):
     """
@@ -33,7 +31,7 @@ class Race(models.Model):
         ordering = ['date']
 
     def __str__(self):
-        return f"{self.name} - {self.date}"
+        return f'{self.name} - {self.date}'
     
 
 class Prediction(models.Model):
@@ -54,7 +52,7 @@ class Prediction(models.Model):
         unique_together = ['user', 'race']
 
     def __str__(self):
-        return f"{self.user.username} - {self.race.name}"
+        return f'{self.user.username} - {self.race.name}'
     
     def calculate_score(self):
         try:
@@ -87,7 +85,7 @@ class RaceResult(models.Model):
     p3_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='p3_results')
 
     def __str__(self):
-        return f"Result: {self.race.name}"
+        return f'Result: {self.race.name}'
     
 class UserProfile(models.Model):
     """

@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 from .forms import PredictionForm, UserProfileForm
 from .models import Race, Prediction
@@ -80,7 +81,6 @@ def leaderboard(request):
     standings = get_league_standings()
 
     # Look up usernames for the user IDs in one query
-    from django.contrib.auth.models import User
     user_map = dict(
         User.objects.filter(id__in=[uid for uid, _ in standings])
         .values_list('id', 'username')
