@@ -16,62 +16,64 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">F1 Blog</a>
-            {% if user.is_authenticated %}
-            <span class="navbar-user-badge">Hi {{ user.username }}</span>
-            {% endif %}
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
-                            href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'race_list' or request.resolver_match.url_name == 'race_detail' %}active{% endif %}"
-                            href="{% url 'race_list' %}">Races</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'leaderboard' %}active{% endif %}"
-                            href="{% url 'leaderboard' %}">Leaderboard</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}"
-                            href="{% url 'profile' %}">My Garage</a>
-                    </li>
-                    <li class="nav-item d-flex align-items-center">
-                        <form method="post" action="{% url 'logout' %}" class="d-inline">
-                            {% csrf_token %}
-                            <button type="submit" class="nav-link btn btn-link">Logout</button>
-                        </form>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}"
-                            href="{% url 'login' %}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}"
-                            href="{% url 'register' %}">Register</a>
-                    </li>
-                    {% endif %}
-                </ul>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">F1 Blog</a>
+                {% if user.is_authenticated %}
+                <span class="navbar-user-badge">Hi {{ user.username }}</span>
+                {% endif %}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+                                href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'race_list' or request.resolver_match.url_name == 'race_detail' %}active{% endif %}"
+                                href="{% url 'race_list' %}">Races</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'leaderboard' %}active{% endif %}"
+                                href="{% url 'leaderboard' %}">Leaderboard</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}"
+                                href="{% url 'profile' %}">My Garage</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <form method="post" action="{% url 'logout' %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="nav-link btn btn-link">Logout</button>
+                            </form>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}"
+                                href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}"
+                                href="{% url 'register' %}">Register</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <main class="container">
         {% if messages %}
         {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
             {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         {% endfor %}
         {% endif %}
