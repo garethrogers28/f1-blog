@@ -14,6 +14,7 @@
 body {
     background-color: var(--light-grey);
     color: var(--black);
+    font-family: 'Roboto', sans-serif;
 }
 
 /* Navbar */
@@ -103,6 +104,10 @@ footer a:hover {
 }
 
 /* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Exo 2', sans-serif;
+}
+
 h1 {
     color: var(--black);
     font-weight: 700;
