@@ -24,6 +24,7 @@ Built as Project 4 for the Code Institute Full Stack Software Development Diplom
   - [Existing Features](#existing-features)
   - [Future Features](#future-features)
 - [Technologies Used](#technologies-used)
+- [Validation](#validation)
 - [Security Features](#security-features)
 - [Testing](#testing)
 - [Deployment](#deployment)
@@ -287,6 +288,16 @@ The `Prediction` model is the core custom feature of the application. It links u
 - [SQLite](https://www.sqlite.org/) — Local development database
 - [Lucidchart](https://www.lucidchart.com/) — Wireframes and ERD
 - [Am I Responsive](https://ui.dev/amiresponsive) — Responsive mockup screenshot
+
+---
+
+## Validation
+
+- Users cannot submit duplicate drivers in podium predictions
+- Predictions cannot be edited after race deadlines
+- Only authenticated users can submit predictions
+- Empty or invalid form submissions are rejected with clear error messages
+- Form validation feedback is displayed clearly to users
 
 ---
 
