@@ -17,6 +17,7 @@ Return to [README.md](README.md)
   - [JavaScript Validation](#javascript-validation)
   - [Python Validation](#python-validation)
 - [Accessibility Testing](#accessibility-testing)
+- [Lighthouse Testing](#lighthouse-testing)
 - [Browser Testing](#browser-testing)
 - [Responsiveness Testing](#responsiveness-testing)
 - [Bugs](#bugs)
@@ -213,6 +214,49 @@ All colour combinations were tested using [WebAIM Contrast Checker](https://weba
 - `aria-label` on toggle buttons and close buttons
 - `alt` text on all images
 - Skip navigation was not implemented due to the simple single-page layout structure
+
+---
+
+## Lighthouse Testing
+
+All pages were tested using Google Chrome Lighthouse in both desktop and mobile modes.
+
+| Page | Device | Performance | Accessibility | Best Practices | SEO |
+|------|--------|-------------|---------------|----------------|-----|
+| Home | Desktop | 98  | 100 |100|100 |
+| Home | Mobile |92 |100 |100 |100 |
+| Post Detail | Desktop |98 |100 |100 |100 |
+| Post Detail | Mobile |88 |100 |100 |100 |
+| Race List | Desktop |99 |100 |100 |100 |
+| Race List | Mobile | 92|100 |100 |100 |
+| Race Detail | Desktop |97 |100 |100 |100 |
+| Race Detail | Mobile | 89|100 |100 |100 |
+| Leaderboard | Desktop | 98|100 |100 |100 |
+| Leaderboard | Mobile |91 |100 |100 |100 |
+| Profile | Desktop |98 |100 |100 |100 |
+| Profile | Mobile | 90| 100|100 |100 |
+
+<details>
+<summary>Lighthouse Screenshots — Desktop</summary>
+
+![Lighthouse Desktop - Home](documents/testing/lighthouse-desktop-home.png)
+![Lighthouse Desktop - Post Detail](documents/testing/lighthouse-desktop-post-detail.png)
+![Lighthouse Desktop - Race List](documents/testing/lighthouse-desktop-race-list.png)
+![Lighthouse Desktop - Race Detail](documents/testing/lighthouse-desktop-race-detail.png)
+![Lighthouse Desktop - Leaderboard](documents/testing/lighthouse-desktop-leaderboard.png)
+![Lighthouse Desktop - Profile](documents/testing/lighthouse-desktop-profile.png)
+</details>
+
+<details>
+<summary>Lighthouse Screenshots — Mobile</summary>
+
+![Lighthouse Mobile - Home](documents/testing/lighthouse-mobile-home.png)
+![Lighthouse Mobile - Post Detail](documents/testing/lighthouse-mobile-post-detail.png)
+![Lighthouse Mobile - Race List](documents/testing/lighthouse-mobile-race-list.png)
+![Lighthouse Mobile - Race Detail](documents/testing/lighthouse-mobile-race-detail.png)
+![Lighthouse Mobile - Leaderboard](documents/testing/lighthouse-mobile-leaderboard.png)
+![Lighthouse Mobile - Profile](documents/testing/lighthouse-mobile-profile.png)
+</details>
 
 ---
 
