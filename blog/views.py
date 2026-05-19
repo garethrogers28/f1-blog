@@ -26,7 +26,11 @@ def post_detail(request, slug):
     """
     post = get_object_or_404(Post, slug=slug)
     comments = post.comments.all()
-    liked = post.likes.filter(id=request.user.id).exists() if request.user.is_authenticated else False
+    liked = (
+        post.likes.filter(id=request.user.id).exists()
+        if request.user.is_authenticated
+        else False
+    )
     if request.method == 'POST' and request.user.is_authenticated:
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -108,7 +112,10 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Account created successfully. You can now log in.')
+            messages.success(
+                request,
+                'Account created successfully. You can now log in.',
+            )
             return redirect('login')
     else:
         form = CustomUserCreationForm()

@@ -15,6 +15,7 @@ from .services import (
     get_or_create_profile,
 )
 
+
 def race_list(request):
     """
     Display all races split into upcoming and past.
@@ -29,8 +30,9 @@ def race_list(request):
     predicted_race_ids = set()
     if request.user.is_authenticated:
         predicted_race_ids = set(
-            Prediction.objects.filter(user=request.user, race__in=upcoming_races)
-            .values_list('race_id', flat=True)
+            Prediction.objects.filter(
+                user=request.user, race__in=upcoming_races
+            ).values_list('race_id', flat=True)
         )
 
     return render(request, 'predictions/race_list.html', {
@@ -50,15 +52,20 @@ def race_detail(request, slug):
     race = get_object_or_404(Race, slug=slug)
     prediction = Prediction.objects.filter(
         user=request.user, race=race
-    ).select_related('pole_driver', 'p1_driver', 'p2_driver', 'p3_driver').first()
+    ).select_related(
+        'pole_driver', 'p1_driver', 'p2_driver', 'p3_driver'
+    ).first()
     deadline_passed = timezone.now() > race.prediction_deadline
 
     if request.method == 'POST':
         if deadline_passed:
-            messages.error(request, 'The prediction deadline has passed.')
+            messages.error(
+                request, 'The prediction deadline has passed.'
+            )
             return redirect('race_detail', slug=slug)
 
-        # ModelForm handles instance=None (creates new) or existing instance (updates)
+        # ModelForm handles instance=None (creates new)
+        # or existing instance (updates)
         form = PredictionForm(request.POST, instance=prediction)
         if form.is_valid():
             save_prediction(request.user, race, form)
@@ -73,6 +80,7 @@ def race_detail(request, slug):
         'prediction': prediction,
         'deadline_passed': deadline_passed,
     })
+
 
 def leaderboard(request):
     """
@@ -94,6 +102,7 @@ def leaderboard(request):
     return render(request, 'predictions/leaderboard.html', {
         'standings': display_standings,
     })
+
 
 @login_required
 def profile(request):
@@ -117,7 +126,8 @@ def profile(request):
         'league_position': league_position,
         'total_players': total_players,
         'upcoming_status': upcoming_status,
-        # Unpacks: total_predictions, total_score, correct_picks, total_picks, history
+        # Unpacks: total_predictions, total_score,
+        # correct_picks, total_picks, history
         **stats,
     })
 
@@ -125,17 +135,21 @@ def profile(request):
 @login_required
 def edit_profile(request):
     """
-    Allow the user to edit their profile (display name, favourite team, favourite driver).
+    Allow the user to edit their profile
+    (display name, favourite team, favourite driver).
     Ensures a profile exists even on first visit.
     """
     user_profile = get_or_create_profile(request.user)
 
     if request.method == 'POST':
-        # User submitted the form — bind POST data to the existing profile instance
+        # User submitted the form — bind POST data to the
+        # existing profile instance
         form = UserProfileForm(request.POST, instance=user_profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profile updated successfully!')
+            messages.success(
+                request, 'Profile updated successfully!'
+            )
             # Redirect back to the dashboard so they see their changes
             return redirect('profile')
     else:

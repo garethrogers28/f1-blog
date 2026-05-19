@@ -58,13 +58,28 @@ def get_user_stats(user):
         result = prediction.race.result
 
         # Calculate points per position (5/10/5/3) — used in the template
-        pole_pts = 5 if prediction.pole_driver_id == result.pole_driver_id else 0
-        p1_pts = 10 if prediction.p1_driver_id == result.p1_driver_id else 0
-        p2_pts = 5 if prediction.p2_driver_id == result.p2_driver_id else 0
-        p3_pts = 3 if prediction.p3_driver_id == result.p3_driver_id else 0
+        pole_pts = (
+            5 if prediction.pole_driver_id == result.pole_driver_id
+            else 0
+        )
+        p1_pts = (
+            10 if prediction.p1_driver_id == result.p1_driver_id
+            else 0
+        )
+        p2_pts = (
+            5 if prediction.p2_driver_id == result.p2_driver_id
+            else 0
+        )
+        p3_pts = (
+            3 if prediction.p3_driver_id == result.p3_driver_id
+            else 0
+        )
 
         # Count correct picks (any position scoring > 0 means a correct pick)
-        correct_picks += sum(1 for pts in [pole_pts, p1_pts, p2_pts, p3_pts] if pts > 0)
+        correct_picks += sum(
+            1 for pts in [pole_pts, p1_pts, p2_pts, p3_pts]
+            if pts > 0
+        )
 
         history.append({
             'prediction': prediction,
@@ -101,7 +116,8 @@ def get_league_standings():
 
     scores = {}
     for pred in preds:
-        scores[pred.user_id] = scores.get(pred.user_id, 0) + pred.calculate_score()
+        uid = pred.user_id
+        scores[uid] = scores.get(uid, 0) + pred.calculate_score()
 
     return sorted(scores.items(), key=lambda x: x[1], reverse=True)
 

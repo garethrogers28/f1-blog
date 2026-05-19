@@ -46,6 +46,7 @@ class PredictionForm(forms.ModelForm):
 
         return cleaned_data
 
+
 # List of F1 teams for the dropdown
 # First item is an empty option shown by default
 TEAM_CHOICES = [('', '--- Select a team ---')] + [
@@ -65,7 +66,8 @@ TEAM_CHOICES = [('', '--- Select a team ---')] + [
 
 class UserProfileForm(forms.ModelForm):
     """
-    Form for editing the user's profile (display name, favourite team, favourite driver).
+    Form for editing the user's profile (display name,
+    favourite team, favourite driver).
     Uses dropdowns for team and driver selection.
     """
     # ModelForm automatically creates form fields from the UserProfile model

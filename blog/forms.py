@@ -6,11 +6,13 @@ from .models import Comment
 
 class CustomUserCreationForm(UserCreationForm):
     """
-    User registration form extending Django's UserCreationForm with email field.
+    User registration form extending Django's UserCreationForm
+    with email field.
     """
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+
 
 class CommentForm(forms.ModelForm):
     """
@@ -18,4 +20,4 @@ class CommentForm(forms.ModelForm):
     """
     class Meta:
         model = Comment
-        fields = ('body',)        
+        fields = ('body',)

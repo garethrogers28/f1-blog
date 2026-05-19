@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Driver(models.Model):
     """
     Represents an F1 driver with a name, team, and car number.
@@ -14,11 +15,13 @@ class Driver(models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.team})'
-    
+
+
 class Race(models.Model):
     """
     Represents a single F1 race event.
-    Stores race name, circuit, date, prediction deadline, and completion status.
+    Stores race name, circuit, date, prediction deadline,
+    and completion status.
     """
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
@@ -32,20 +35,39 @@ class Race(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.date}'
-    
+
 
 class Prediction(models.Model):
     """
     Stores a user's prediction for a specific race.
     Includes pole, 1st, 2nd, and 3rd place driver picks.
-    Has a calculate_score() method to score predictions against results.
+    Has a calculate_score() method to score predictions
+    against results.
     """
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='predictions')
-    race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='predictions')
-    pole_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='pole_predictions')
-    p1_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='p1_predictions')
-    p2_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='p2_predictions')
-    p3_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='p3_predictions')
+    user = models.ForeignKey(
+        'auth.User', on_delete=models.CASCADE,
+        related_name='predictions',
+    )
+    race = models.ForeignKey(
+        Race, on_delete=models.CASCADE,
+        related_name='predictions',
+    )
+    pole_driver = models.ForeignKey(
+        Driver, on_delete=models.CASCADE,
+        related_name='pole_predictions',
+    )
+    p1_driver = models.ForeignKey(
+        Driver, on_delete=models.CASCADE,
+        related_name='p1_predictions',
+    )
+    p2_driver = models.ForeignKey(
+        Driver, on_delete=models.CASCADE,
+        related_name='p2_predictions',
+    )
+    p3_driver = models.ForeignKey(
+        Driver, on_delete=models.CASCADE,
+        related_name='p3_predictions',
+    )
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -53,7 +75,7 @@ class Prediction(models.Model):
 
     def __str__(self):
         return f'{self.user.username} - {self.race.name}'
-    
+
     def calculate_score(self):
         try:
             result = self.race.result
@@ -72,21 +94,37 @@ class Prediction(models.Model):
         if self.p3_driver_id == result.p3_driver_id:
             score += 3
         return score
-    
+
+
 class RaceResult(models.Model):
     """
     Stores the official result for a race (pole, 1st, 2nd, 3rd drivers).
     Linked one-to-one with a Race.
     """
-    race = models.OneToOneField(Race, on_delete=models.CASCADE, related_name='result')
-    pole_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='pole_results')
-    p1_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='p1_results')
-    p2_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='p2_results')
-    p3_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='p3_results')
+    race = models.OneToOneField(
+        Race, on_delete=models.CASCADE, related_name='result'
+    )
+    pole_driver = models.ForeignKey(
+        Driver, on_delete=models.CASCADE,
+        related_name='pole_results',
+    )
+    p1_driver = models.ForeignKey(
+        Driver, on_delete=models.CASCADE,
+        related_name='p1_results',
+    )
+    p2_driver = models.ForeignKey(
+        Driver, on_delete=models.CASCADE,
+        related_name='p2_results',
+    )
+    p3_driver = models.ForeignKey(
+        Driver, on_delete=models.CASCADE,
+        related_name='p3_results',
+    )
 
     def __str__(self):
         return f'Result: {self.race.name}'
-    
+
+
 class UserProfile(models.Model):
     """
     Extends the built-in User model with F1-specific profile info:
