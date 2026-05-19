@@ -127,6 +127,8 @@ This project was developed using Agile methodology, with a GitHub Projects Kanba
 - The Kanban board tracked stories through **To Do**, **In Progress**, and **Done** columns
 - Work was completed in iterative sprints, with features built and tested incrementally
 
+![Kanban Board](documents/images/kanban-board.png)
+
 [View the Project Board](https://github.com/garethrogers28/f1-blog/projects)
 
 ---
@@ -217,6 +219,9 @@ The `Prediction` model is the core custom feature of the application. It links u
 - Active page highlighted with `aria-current="page"` for accessibility
 - Conditional links based on authentication status (Login/Register vs My Garage/Logout)
 
+![Navbar](documents/features/navbar.png)
+![Mobile Navbar](documents/features/mobile-navbar.png)
+
 #### Blog
 - **Post List** — Paginated list of blog posts with excerpts and featured images
 - **Post Detail** — Full article view with comments section and like button
@@ -255,8 +260,12 @@ The `Prediction` model is the core custom feature of the application. It links u
 - Full CRUD for posts, comments, races, drivers, and results
 - Custom admin registration for all models
 
+![Admin Panel](documents/features/admin.png)
+
 #### Error Handling
 - Custom 404 and 500 error pages with friendly messages and navigation back to home
+
+![Custom 404 Page](documents/features/error-page.png)
 
 #### Accessibility & SEO
 - Semantic HTML structure (header, main, footer landmarks)
@@ -264,6 +273,19 @@ The `Prediction` model is the core custom feature of the application. It links u
 - `scope="col"` on all table headers
 - Meta descriptions on every page
 - Lighthouse scores: 100 Accessibility, 100 Best Practices, 100 SEO
+
+#### Mobile Responsiveness
+
+The site is fully responsive across all devices. Below are mobile views of key pages:
+
+<details>
+<summary>Mobile Screenshots</summary>
+
+![Mobile - Home](documents/features/mobile-home.png)
+![Mobile - Post Detail](documents/features/mobile-post-detail.png)
+![Mobile - Race Detail](documents/features/mobile-race-detail.png)
+![Mobile - Leaderboard](documents/features/mobile-leaderboard.png)
+</details>
 
 ### Future Features
 
