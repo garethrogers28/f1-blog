@@ -353,6 +353,9 @@ The site is fully responsive across all devices. Below are mobile views of key p
 - [Bootstrap 5.3.3](https://getbootstrap.com/) — Responsive front-end framework
 - [Bootstrap Icons 1.11.3](https://icons.getbootstrap.com/) — Icon library
 - [Cloudinary](https://cloudinary.com/) — Cloud image hosting
+- [django-cloudinary-storage](https://pypi.org/project/django-cloudinary-storage/) — Django integration for Cloudinary
+- [Gunicorn](https://gunicorn.org/) — Python WSGI HTTP server for production
+- [Pillow](https://pillow.readthedocs.io/) — Python image processing library
 - [WhiteNoise](https://whitenoise.readthedocs.io/) — Static file serving in production
 - [dj-database-url](https://pypi.org/project/dj-database-url/) — Database URL parsing
 - [psycopg2](https://pypi.org/project/psycopg2/) — PostgreSQL adapter
@@ -411,8 +414,9 @@ This project is deployed on Heroku. Steps to deploy:
 3. In the **Deploy** tab, connect to your GitHub repository
 4. Enable **Automatic Deploys** from the `main` branch (or deploy manually)
 5. Run migrations: `heroku run python manage.py migrate`
-6. Create a superuser: `heroku run python manage.py createsuperuser`
-7. Seed drivers: `heroku run python manage.py seed_drivers`
+6. Collect static files: `heroku run python manage.py collectstatic --noinput`
+7. Create a superuser: `heroku run python manage.py createsuperuser`
+8. Seed drivers: `heroku run python manage.py seed_drivers`
 
 ### Forking the Repository
 
