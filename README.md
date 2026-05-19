@@ -223,6 +223,9 @@ The `Prediction` model is the core custom feature of the application. It links u
 - **Comments** — Authenticated users can create, edit, and delete their own comments
 - **Likes** — Authenticated users can like/unlike posts with instant feedback
 
+![Home page](documents/features/home.png)
+![Post Detail](documents/features/post-detail-like-and-comments.png)
+
 #### Race Predictions
 - **Race List** — View upcoming races with dates and prediction status
 - **Submit Prediction** — Choose pole position, P1, P2, and P3 from a dropdown of current drivers
@@ -231,13 +234,22 @@ The `Prediction` model is the core custom feature of the application. It links u
 - **Leaderboard** — Ranked table of all users by total points
 - **Prediction History** — View past predictions with scores earned per race
 
+![Race List](documents/features/race-list.png)
+![Race Detail](documents/features/race-detail.png)
+![Leaderboard](documents/features/leaderboard.png)
+
 #### User Profile
 - **My Garage (Dashboard)** — Personal stats: total points, league position, prediction history, upcoming race status
 - **Edit Profile** — Update display name, favourite team, and favourite driver
 
+![Profile Dashboard](documents/features/profile-one.png)
+![Profile History](documents/features/profile-two.png)
+
 #### Authentication
 - Register, login, and logout functionality
 - Django's built-in authentication with styled templates
+
+![Login](documents/features/log-in.png)
 
 #### Admin Panel
 - Full CRUD for posts, comments, races, drivers, and results
