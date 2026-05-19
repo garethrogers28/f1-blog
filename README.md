@@ -378,7 +378,7 @@ This project is deployed on Heroku. Steps to deploy:
 ## Credits
 
 ### Content
-- Blog post content written by AI
+- Blog post content written by the developer using AI assistance
 - F1 driver data sourced from the official [Formula 1 website](https://www.formula1.com/)
 
 ### Code
