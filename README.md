@@ -244,9 +244,22 @@ The `Prediction` model is the core custom feature of the application. It links u
 - **Race List** — View upcoming races with dates and prediction status
 - **Submit Prediction** — Choose pole position, P1, P2, and P3 from a dropdown of current drivers
 - **Edit Prediction** — Update picks any time before the prediction deadline
-- **Automatic Scoring** — Points awarded when admin enters results (Pole=5, P1=10, P2=5, P3=3)
+- **Automatic Scoring** — Points awarded when admin enters results
 - **Leaderboard** — Ranked table of all users by total points
 - **Prediction History** — View past predictions with scores earned per race
+
+##### Prediction Scoring System
+
+Users earn points based on prediction accuracy:
+
+| Prediction | Points |
+|------------|--------|
+| Correct Pole Position | 5 |
+| Correct P1 (Winner) | 10 |
+| Correct P2 | 5 |
+| Correct P3 | 3 |
+
+Maximum possible score per race: **23 points**. Scores are automatically calculated when race results are entered through the admin panel.
 
 <details>
 <summary>Predictions Screenshots</summary>
