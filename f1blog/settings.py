@@ -166,5 +166,3 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
-# temp fix for am i responsive
-X_FRAME_OPTIONS = 'ALLOWALL'
