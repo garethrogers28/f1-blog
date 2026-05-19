@@ -1,4 +1,4 @@
-# F1 Blog & Race Predictions
+# F1 Hub — Race Predictions & Blog
 
 A full-stack Django web application that combines an F1 blog with a race predictions game. Users can read blog posts, interact through comments and likes, and compete against other fans by predicting pole position and podium finishers for each Grand Prix.
 
