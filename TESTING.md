@@ -186,12 +186,12 @@ All colour combinations were tested using [WebAIM Contrast Checker](https://weba
 
 | Foreground | Background | Ratio | Result |
 |-----------|-----------|-------|--------|
-| White (#ffffff) | Red buttons (#e10600) | 4.53:1 | Pass Pass (AA) |
-| Red text (#e10600) | White background (#ffffff) | 4.53:1 | Pass Pass (AA) |
-| White (#ffffff) | Dark navbar (#1a1a1a) | 17.4:1 | Pass Pass (AAA) |
-| Black text (#1a1a1a) | Light grey (#f5f5f5) | 16.6:1 | Pass Pass (AAA) |
-| Username badge | Dark background | 7:1+ | Pass Pass (AAA) |
-| Blog post cards | Light background | 7:1+ | Pass Pass (AAA) |
+| White (#ffffff) | Red buttons (#e10600) | 4.53:1 | Pass (AA) |
+| Red text (#e10600) | White background (#ffffff) | 4.53:1 | Pass (AA) |
+| White (#ffffff) | Dark navbar (#1a1a1a) | 17.4:1 | Pass (AAA) |
+| Black text (#1a1a1a) | Light grey (#f5f5f5) | 16.6:1 | Pass (AAA) |
+| Username badge | Dark background | 7:1+ | Pass (AAA) |
+| Blog post cards | Light background | 7:1+ | Pass (AAA) |
 
 <details>
 <summary>Contrast Test Screenshots</summary>
@@ -212,7 +212,7 @@ All colour combinations were tested using [WebAIM Contrast Checker](https://weba
 - `scope="col"` on all table headers
 - `aria-label` on toggle buttons and close buttons
 - `alt` text on all images
-- Skip navigation not required (single-column layout with minimal nav)
+- Skip navigation was not implemented due to the simple single-page layout structure
 
 ---
 
@@ -235,11 +235,11 @@ The site was tested at the following breakpoints using Chrome DevTools:
 
 | Device / Width | Result | Notes |
 |---------------|--------|-------|
-| iPhone SE (375px) | Pass Pass | Navbar collapses, cards stack, tables scroll |
-| iPhone 12 (390px) | Pass Pass | All content readable, no overflow |
-| iPad (768px) | Pass Pass | 2-column card layout, tables display fully |
-| iPad Pro (1024px) | Pass Pass | Content well-spaced |
-| Desktop (1440px) | Pass Pass | Full layout, max-width container centred |
+| iPhone SE (375px) | Pass | Navbar collapses, cards stack, tables scroll |
+| iPhone 12 (390px) | Pass | All content readable, no overflow |
+| iPad (768px) | Pass | 2-column card layout, tables display fully |
+| iPad Pro (1024px) | Pass | Content well-spaced |
+| Desktop (1440px) | Pass | Full layout, max-width container centred |
 
 ---
 
@@ -250,7 +250,7 @@ The site was tested at the following breakpoints using Chrome DevTools:
 | # | Bug | Cause | Fix |
 |---|-----|-------|-----|
 | 1 | Bootstrap CSS not loading — site had no styling | Bootstrap CDN link was broken/incorrect | Replaced with correct Bootstrap 5.3.3 CDN link with integrity hash |
-| 2 | SECRET_KEY exposed on GitHub | DEBUG settings configuration caused the key to be committed | Removed hardcoded key, added env.py to .gitignore, regenerated SECRET_KEY, set production to raise ValueError if missing |
+| 2 | SECRET_KEY exposed on GitHub | Sensitive environment variables were exposed due to incorrect configuration of environment handling | Removed hardcoded key, added env.py to .gitignore, regenerated SECRET_KEY, set production to raise ValueError if missing |
 | 3 | Prettier breaking Django template tags | Prettier reformatted `{% if %}` blocks across multiple lines, breaking template logic | Disabled Prettier for HTML files in VS Code settings |
 | 4 | Duplicate `rel` attribute on preconnect link | Had `rel="preconnect"` and `rel="stylesheet"` on same element | Separated into two proper `<link>` elements |
 | 5 | Low contrast on Like button for non-authenticated users | Default Bootstrap outline styling didn't meet WCAG contrast ratio | Changed to `btn-outline-dark` with `link-dark fw-bold` on login link |
