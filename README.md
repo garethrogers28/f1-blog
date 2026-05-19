@@ -4,7 +4,7 @@ A full-stack Django web application that combines an F1 blog with a race predict
 
 Built as Project 4 for the Code Institute Full Stack Software Development Diploma.
 
-![Am I Responsive screenshot](documents/images/amiresponsive.png)
+![Am I Responsive screenshot](documents/images/am-i-responsive.png)
 
 **[Live Site](https://f1-blog-ci-9849428ab6fd.herokuapp.com/)** | **[GitHub Repository](https://github.com/garethrogers28/f1-blog)**
 
@@ -176,7 +176,7 @@ The colour palette was inspired by Formula 1's brand identity — bold reds agai
 
 The database schema was designed in Lucidchart showing all models and their relationships.
 
-![ERD](documents/images/erd.png)
+![ERD](documents/images/f1-blog-erd.png)
 
 The project uses 8 database tables across 2 apps:
 
