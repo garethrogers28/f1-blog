@@ -219,8 +219,12 @@ The `Prediction` model is the core custom feature of the application. It links u
 - Active page highlighted with `aria-current="page"` for accessibility
 - Conditional links based on authentication status (Login/Register vs My Garage/Logout)
 
+<details>
+<summary>Navigation Screenshots</summary>
+
 ![Navbar](documents/features/navbar.png)
 ![Mobile Navbar](documents/features/mobile-navbar.png)
+</details>
 
 #### Blog
 - **Post List** — Paginated list of blog posts with excerpts and featured images
@@ -229,7 +233,12 @@ The `Prediction` model is the core custom feature of the application. It links u
 - **Likes** — Authenticated users can like/unlike posts with instant feedback
 
 ![Home page](documents/features/home.png)
+
+<details>
+<summary>Post Detail Screenshot</summary>
+
 ![Post Detail](documents/features/post-detail-like-and-comments.png)
+</details>
 
 #### Race Predictions
 - **Race List** — View upcoming races with dates and prediction status
@@ -239,33 +248,53 @@ The `Prediction` model is the core custom feature of the application. It links u
 - **Leaderboard** — Ranked table of all users by total points
 - **Prediction History** — View past predictions with scores earned per race
 
+<details>
+<summary>Predictions Screenshots</summary>
+
 ![Race List](documents/features/race-list.png)
 ![Race Detail](documents/features/race-detail.png)
 ![Leaderboard](documents/features/leaderboard.png)
+</details>
 
 #### User Profile
 - **My Garage (Dashboard)** — Personal stats: total points, league position, prediction history, upcoming race status
 - **Edit Profile** — Update display name, favourite team, and favourite driver
 
+<details>
+<summary>Profile Screenshots</summary>
+
 ![Profile Dashboard](documents/features/profile-one.png)
 ![Profile History](documents/features/profile-two.png)
+</details>
 
 #### Authentication
 - Register, login, and logout functionality
 - Django's built-in authentication with styled templates
 
+<details>
+<summary>Login Screenshot</summary>
+
 ![Login](documents/features/log-in.png)
+</details>
 
 #### Admin Panel
 - Full CRUD for posts, comments, races, drivers, and results
 - Custom admin registration for all models
 
+<details>
+<summary>Admin Panel Screenshot</summary>
+
 ![Admin Panel](documents/features/admin.png)
+</details>
 
 #### Error Handling
 - Custom 404 and 500 error pages with friendly messages and navigation back to home
 
+<details>
+<summary>404 Page Screenshot</summary>
+
 ![Custom 404 Page](documents/features/error-page.png)
+</details>
 
 #### Accessibility & SEO
 - Semantic HTML structure (header, main, footer landmarks)
