@@ -10,6 +10,14 @@ Built as Project 4 for the Code Institute Full Stack Software Development Diplom
 
 ---
 
+## Introduction
+
+F1 Hub is a full-stack Django web application built for Formula 1 fans who want more than just race news and results. The platform combines a modern F1 blog with an interactive prediction game, allowing users to engage with content, compete against other fans, and track their performance throughout the racing season.
+
+The application was designed to create a community-driven experience centred around weekly Grand Prix events. Users can read and interact with blog posts through likes and comments, while also submitting predictions for pole position and podium finishers to earn points on a live leaderboard.
+
+This project was developed as Project Portfolio 4 for the Code Institute Full Stack Software Development Diploma and demonstrates key full-stack development concepts including relational database design, authentication and authorisation, CRUD functionality, responsive UI design, and deployment to a cloud-based production environment.
+
 ## Table of Contents
 
 - [Project Goals](#project-goals)
@@ -113,7 +121,7 @@ User stories were managed using a GitHub Projects board with MoSCoW prioritisati
 | 21 | As a registered user, I can see my total points, so that I can track my performance | Total points are displayed clearly · Points updated automatically after race scoring · Points reflect all completed race weekends |
 | 22 | As a registered user, I can see my current leaderboard rank, so that I can see where I am in the standings | Rank is displayed on dashboard · Rank updates automatically after scoring · Rank is based on total accumulated points |
 | 23 | As a registered user, I can view my previous predictions, so that I can review my past performance quickly | Previous race predictions are listed chronologically · Each prediction displays race name and score earned · Users can access prediction details |
-| 24 | As a registered user, I can see whether I have submitted/not submitted, so that I know if action is required | Upcoming race is displayed · Prediction status shows submitted/not submitted · Edit link available before deadline |
+| 24 | As a registered user, I can see whether I have submitted a prediction, so that I know if action is required | Upcoming race is displayed · Prediction status shows submitted/not submitted · Edit link available before deadline |
 | 25 | As a registered user, I can update my profile, so that I can personalise my account | User can edit profile fields · Changes save successfully · Invalid submissions show validation errors |
 
 ---
@@ -244,7 +252,7 @@ The `Prediction` model is the core custom feature of the application. It links u
 - **Race List** — View upcoming races with dates and prediction status
 - **Submit Prediction** — Choose pole position, P1, P2, and P3 from a dropdown of current drivers
 - **Edit Prediction** — Update picks any time before the prediction deadline
-- **Automatic Scoring** — Points awarded when admin enters results
+- **Automatic Scoring** — Points are calculated automatically by comparing user predictions against official race results entered through the admin panel
 - **Leaderboard** — Ranked table of all users by total points
 - **Prediction History** — View past predictions with scores earned per race
 
@@ -333,10 +341,11 @@ The site is fully responsive across all devices. Below are mobile views of key p
 
 - Forgot/reset password functionality
 - Delete account option
-- Predict fastest lap for bonus points
+- Predict fastest lap or sprint race
 - Season championship predictions
 - Social sharing of predictions
 - Push notifications when results are entered
+
 
 ---
 
@@ -382,11 +391,16 @@ The site is fully responsive across all devices. Below are mobile views of key p
 
 ## Security Features
 
-- CSRF protection enabled via Django middleware
-- Environment variables used for sensitive credentials
-- DEBUG disabled in production
-- Authentication required for protected actions
-- Users can only edit/delete their own content
+- **CSRF protection** — Django's `CsrfViewMiddleware` protects all POST requests from cross-site request forgery
+- **Clickjacking protection** — `XFrameOptionsMiddleware` prevents the site from being embedded in iframes
+- **Environment variables** — All sensitive credentials (`SECRET_KEY`, database URL, Cloudinary keys) stored in environment variables, never hardcoded
+- **`env.py` excluded from version control** — Listed in `.gitignore` to prevent credential exposure
+- **DEBUG disabled in production** — Defaults to `False` if the environment variable is missing, ensuring production is always safe
+- **SECRET_KEY validation** — Application raises an error on startup if `SECRET_KEY` is not set in production
+- **Password validation** — Django's built-in validators enforce minimum length, common password checks, numeric-only checks, and user attribute similarity checks
+- **Authentication required** — `@login_required` decorator on all comment, prediction, and profile views
+- **Ownership verification** — Users can only edit/delete their own comments (explicit `request.user` checks in views)
+- **Prediction scoping** — All prediction queries are filtered by the authenticated user, preventing access to other users' data
 
 ---
 
@@ -403,20 +417,23 @@ Testing documentation is in a separate file: [TESTING.md](TESTING.md)
 This project is deployed on Heroku. Steps to deploy:
 
 1. Create a new app on [Heroku](https://heroku.com/)
-2. In the app **Settings** tab, add the following Config Vars:
+2. Ensure a `Procfile` exists in the project root with: `web: gunicorn f1blog.wsgi`
+3. In the app **Settings** tab, add the following Config Vars:
    | Key | Value |
    |-----|-------|
    | `SECRET_KEY` | Your secret key |
    | `DATABASE_URL` | Your PostgreSQL URL (auto-added with Heroku Postgres add-on) |
-   | `CLOUDINARY_URL` | Your Cloudinary API URL |
+   | `CLOUDINARY_CLOUD_NAME` | Your Cloudinary cloud name |
+   | `CLOUDINARY_API_KEY` | Your Cloudinary API key |
+   | `CLOUDINARY_API_SECRET` | Your Cloudinary API secret |
    | `ALLOWED_HOSTS` | Your Heroku app URL (e.g. `f1-blog-ci-9849428ab6fd.herokuapp.com`) |
    | `DEBUG` | `False` |
-3. In the **Deploy** tab, connect to your GitHub repository
-4. Enable **Automatic Deploys** from the `main` branch (or deploy manually)
-5. Run migrations: `heroku run python manage.py migrate`
-6. Collect static files: `heroku run python manage.py collectstatic --noinput`
-7. Create a superuser: `heroku run python manage.py createsuperuser`
-8. Seed drivers: `heroku run python manage.py seed_drivers`
+4. In the **Deploy** tab, connect to your GitHub repository
+5. Enable **Automatic Deploys** from the `main` branch (or deploy manually)
+6. Run migrations: `heroku run python manage.py migrate`
+7. Collect static files: `heroku run python manage.py collectstatic --noinput`
+8. Create a superuser: `heroku run python manage.py createsuperuser`
+9. Seed drivers: `heroku run python manage.py seed_drivers`
 
 ### Forking the Repository
 
@@ -436,15 +453,20 @@ This project is deployed on Heroku. Steps to deploy:
    source .venv/bin/activate  # or .venv\Scripts\activate on Windows
    pip install -r requirements.txt
    ```
+   This will install all project dependencies listed in the requirements file.
+
 4. Create an `env.py` file in the root directory:
    ```python
    import os
 
    os.environ['SECRET_KEY'] = 'your-secret-key-here'
    os.environ['DATABASE_URL'] = 'your-database-url'
-   os.environ['CLOUDINARY_URL'] = 'your-cloudinary-url'
+   os.environ['CLOUDINARY_CLOUD_NAME'] = 'your-cloud-name'
+   os.environ['CLOUDINARY_API_KEY'] = 'your-api-key'
+   os.environ['CLOUDINARY_API_SECRET'] = 'your-api-secret'
    os.environ['DEBUG'] = 'True'
    ```
+   Ensure `env.py` is included in `.gitignore` so sensitive credentials are not exposed publicly.
 5. Run migrations and start the server:
    ```bash
    python manage.py migrate
