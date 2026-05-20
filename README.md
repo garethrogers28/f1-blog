@@ -12,11 +12,11 @@ Built as Project 4 for the Code Institute Full Stack Software Development Diplom
 
 ## Introduction
 
-F1 Hub is a full-stack Django web application built for Formula 1 fans who want more than just race news and results. The platform combines a modern F1 blog with an interactive prediction game, allowing users to engage with content, compete against other fans, and track their performance throughout the racing season.
+F1 Hub is a full-stack Django web application designed for Formula 1 fans who want to go beyond traditional race news and results. The platform brings together an F1 blog and an interactive race prediction system, enabling users to engage with content, compete with others, and track their performance across the racing season.
 
-The application was designed to create a community-driven experience centred around weekly Grand Prix events. Users can read and interact with blog posts through likes and comments, while also submitting predictions for pole position and podium finishers to earn points on a live leaderboard.
+Built around weekly Grand Prix events, the application creates a community-driven experience where users can read blog posts, interact through likes and comments, and submit predictions for pole position and podium finishers to earn points on a live leaderboard.
 
-This project was developed as Project Portfolio 4 for the Code Institute Full Stack Software Development Diploma and demonstrates key full-stack development concepts including relational database design, authentication and authorisation, CRUD functionality, responsive UI design, and deployment to a cloud-based production environment.
+This project was developed as Project Portfolio 4 for the Code Institute Full Stack Software Development Diploma and demonstrates key full-stack development principles, including relational database design, authentication and authorisation, CRUD functionality, responsive UI design, and deployment to a cloud-based production environment.
 
 ## Table of Contents
 
@@ -158,7 +158,7 @@ Wireframes were created in Lucidchart for both desktop and mobile views, coverin
 <details>
 <summary>View All Wireframes (Desktop & Mobile)</summary>
 
-![Wireframes](documents/wireframes/wireframes.png)
+![Wireframes](documents/wireframes/f1-blog-wireframes.png)
 </details>
 
 ### Colour Scheme
@@ -406,7 +406,9 @@ The site is fully responsive across all devices. Below are mobile views of key p
 
 ## Testing
 
-Testing documentation is in a separate file: [TESTING.md](TESTING.md)
+Manual testing was completed across all major functionality including authentication, CRUD operations, prediction submissions, leaderboard calculations, responsive design, and form validation.
+
+Additional testing details, validator results, and bug fixes are documented in [TESTING.md](TESTING.md)
 
 ---
 
