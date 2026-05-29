@@ -1,3 +1,13 @@
+html,
+body {
+    height: 100%;
+}
+
+body>footer {
+    position: sticky;
+    top: 100vh;
+}
+
 /* Custom styles for F1 Blog */
 
 /* Colour palette */
