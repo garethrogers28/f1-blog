@@ -214,6 +214,17 @@ The `Prediction` model is the core custom feature of the application. It links u
 ![Mobile Navbar](documents/features/mobile-navbar.png)
 </details>
 
+#### Footer
+- Social media links (Facebook, Instagram, X, LinkedIn) with icon-only design
+- All external links open in new tabs with `rel="noopener"` for security
+- Developer credit with link to GitHub profile
+
+<details>
+<summary>Footer Screenshot</summary>
+
+![Footer](documents/features/footer.png)
+</details>
+
 #### Blog
 - **Post List** — Paginated list of blog posts with excerpts and featured images
 - **Post Detail** — Full article view with comments section and like button
@@ -300,8 +311,10 @@ Maximum possible score per race: **23 points**. Scores are automatically calcula
 #### Accessibility & SEO
 - Semantic HTML structure (header, main, footer landmarks)
 - `aria-current="page"` on active navigation links
+- `aria-label` on icon-only links (social media footer links)
 - `scope="col"` on all table headers
 - Meta descriptions on every page
+- Custom favicon (chequered flag) for browser tab identification
 - Lighthouse scores: 100 Accessibility, 100 Best Practices, 100 SEO
 
 #### Mobile Responsiveness
