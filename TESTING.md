@@ -4,28 +4,6 @@ Return to [README.md](README.md)
 
 ---
 
-## Table of Contents
-
-- [Manual Testing](#manual-testing)
-  - [Authentication](#authentication)
-  - [Blog](#blog)
-  - [UX](#ux)
-  - [Predictions](#predictions)
-- [Code Validation](#code-validation)
-  - [HTML Validation](#html-validation)
-  - [CSS Validation](#css-validation)
-  - [JavaScript Validation](#javascript-validation)
-  - [Python Validation](#python-validation)
-- [Accessibility Testing](#accessibility-testing)
-- [Lighthouse Testing](#lighthouse-testing)
-- [Browser Testing](#browser-testing)
-- [Responsiveness Testing](#responsiveness-testing)
-- [Bugs](#bugs)
-  - [Fixed Bugs](#fixed-bugs)
-  - [Unfixed Bugs](#unfixed-bugs)
-
----
-
 ## Manual Testing
 
 ### Authentication
