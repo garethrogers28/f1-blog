@@ -204,10 +204,10 @@ All pages were tested using Google Chrome Lighthouse in both desktop and mobile 
 | Page        | Device  | Performance | Accessibility | Best Practices | SEO |
 | ----------- | ------- | ----------- | ------------- | -------------- | --- |
 | Home        | Desktop | 98          | 100           | 100            | 100 |
-| Home        | Mobile  | 92          | 100           | 100            | 100 |
+| Home        | Mobile  | 84          | 100           | 100            | 100 |
 | Post Detail | Desktop | 98          | 100           | 100            | 100 |
-| Post Detail | Mobile  | 88          | 100           | 100            | 100 |
-| Race List   | Desktop | 99          | 100           | 100            | 100 |
+| Post Detail | Mobile  | 89          | 100           | 100            | 100 |
+| Race List   | Desktop | 98          | 100           | 100            | 100 |
 | Race List   | Mobile  | 92          | 100           | 100            | 100 |
 | Race Detail | Desktop | 97          | 100           | 100            | 100 |
 | Race Detail | Mobile  | 89          | 100           | 100            | 100 |
