@@ -1,3 +1,5 @@
+/* jshint esversion: 11 */
+/* global bootstrap */
 // Custom JavaScript for F1 Blog
 
 // Auto-dismiss Bootstrap alerts after 4 seconds
