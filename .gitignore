@@ -9,3 +9,5 @@ build/
 .env
 env.py
 staticfiles/
+commands/
+seed_*.py
