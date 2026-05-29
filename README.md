@@ -18,26 +18,6 @@ Built around weekly Grand Prix events, the application creates a community-drive
 
 This project was developed as Project Portfolio 4 for the Code Institute Full Stack Software Development Diploma and demonstrates key full-stack development principles, including relational database design, authentication and authorisation, CRUD functionality, responsive UI design, and deployment to a cloud-based production environment.
 
-## Table of Contents
-
-- [Project Goals](#project-goals)
-- [User Stories](#user-stories)
-- [Agile Methodology](#agile-methodology)
-- [UX Design](#ux-design)
-  - [Wireframes](#wireframes)
-  - [Colour Scheme](#colour-scheme)
-  - [Typography](#typography)
-  - [Entity Relationship Diagram](#entity-relationship-diagram)
-- [Features](#features)
-  - [Existing Features](#existing-features)
-  - [Future Features](#future-features)
-- [Technologies Used](#technologies-used)
-- [Validation](#validation)
-- [Security Features](#security-features)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [Credits](#credits)
-
 ---
 
 ## Project Goals
