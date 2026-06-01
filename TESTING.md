@@ -74,6 +74,16 @@ Return to [README.md](README.md)
 | 25  | Update profile       | Edit profile fields           | Log in → My Garage → Edit Profile → Update fields → Save | Profile updated, success message shown             | As expected   | Pass      |
 | 25  | Update profile       | Invalid submission rejected   | Submit profile form with invalid data                    | Validation errors displayed                        | As expected   | Pass      |
 
+### Defensive Programming
+
+These tests verify that server-side protections reject unauthorised requests via direct URL manipulation, beyond just hiding UI elements.
+
+| Test | Steps | Expected Result | Actual Result | Pass/Fail |
+|------|-------|-----------------|---------------|-----------|
+| Edit another user's comment via URL | Log in as User A → type `/comment/<User B's pk>/edit/` in address bar | Redirected to post detail, comment unchanged | As expected | Pass |
+| Delete another user's comment via URL | Log in as User A → type `/comment/<User B's pk>/delete/` in address bar | Redirected to post detail, comment not deleted | As expected | Pass |
+| Delete comment via GET request | Log in → type `/comment/1/delete/` directly (GET request) | Delete confirmation page shown, comment NOT deleted until POST confirmed | As expected | Pass |
+
 ---
 
 ## Code Validation

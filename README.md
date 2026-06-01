@@ -113,7 +113,7 @@ This project was developed using Agile methodology, with a GitHub Projects Kanba
 
 - User stories were created as GitHub Issues with acceptance criteria
 - Stories were prioritised using MoSCoW labels (Must Have, Should Have, Could Have)
-- The Kanban board tracked stories through **To Do**, **In Progress**, and **Done** columns
+- The Kanban board tracked stories through **To Do**, **In Progress**, **Done** and **Wont Have** columns
 - Work was completed in iterative sprints, with features built and tested incrementally
 
 ![Kanban Board](documents/images/kanban-board.png)

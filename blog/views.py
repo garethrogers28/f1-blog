@@ -54,7 +54,7 @@ def edit_comment(request, pk):
     """
     comment = get_object_or_404(Comment, pk=pk)
     if comment.author != request.user:
-        return redirect('post_detail', slug=comment.post.slug) #fix 
+        return redirect('post_detail', slug=comment.post.slug)
     if request.method == 'POST':
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
