@@ -87,6 +87,7 @@ User stories were managed using a GitHub Projects board with MoSCoW prioritisati
 |---|-----------|-------------------|
 | 9 | As a user, I can use the site on all devices, so that I can access from anywhere | Site is fully responsive · Layout adapts to mobile, tablet, and desktop |
 | 10 | As a user, I need clear and simple navigation, so that I can move around the site easily | Navigation bar is visible on all pages · Links to key pages are included |
+| 28 | As a user, I can see a custom 404 page when I visit a page that does not exist, so that I understand the page cannot be found and can navigate back to the site | A custom 404 page is displayed for invalid URLs · The page explains that the requested page was not found · A link is provided to return to the homepage |
 
 ### Predictions
 

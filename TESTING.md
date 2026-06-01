@@ -48,6 +48,8 @@ Return to [README.md](README.md)
 | 10  | Clear navigation  | Navbar visible on all pages | Navigate through all pages                  | Navbar present on every page with correct links            | As expected   | Pass      |
 | 10  | Clear navigation  | Active page highlighted     | Navigate to different pages                 | Current page link highlighted in navbar                    | As expected   | Pass      |
 | 10  | Clear navigation  | Conditional nav links       | Check navbar when logged in vs logged out   | Logged in: My Garage, Logout · Logged out: Login, Register | As expected   | Pass      |
+| 28  | Custom 404 page   | Invalid URL shows 404        | Navigate to a non-existent URL (e.g. /xyz) | Custom 404 page displayed with message and link to home    | As expected   | Pass      |
+| 28  | Custom 404 page   | Home link works              | Click the "Back to Home" link on 404 page   | User is redirected to the homepage                         | As expected   | Pass      |
 
 ### Predictions
 
