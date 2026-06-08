@@ -25,6 +25,7 @@ This project was developed as Project Portfolio 4 for the Code Institute Full St
 The aim of this project was to create a full-stack Formula 1 community platform that combines blog content with an interactive race prediction game.
 
 The project was designed to:
+
 - Provide engaging Formula 1 content
 - Encourage user interaction through comments and likes
 - Allow users to compete via race predictions
@@ -39,17 +40,17 @@ The project was designed to:
 
 ### Scope
 
-| In Scope | Out of Scope |
-|----------|-------------|
-| F1 blog with full CRUD for comments | User-created blog posts (admin only) |
-| Like/unlike posts | Social media login (Google, Facebook) |
-| Race prediction system (pole + podium) | Fastest lap or sprint race predictions |
-| Automatic scoring with points | Real-time live race data or API integration |
-| Leaderboard and rankings | Season-long championship predictions |
-| Personal dashboard (My Garage) | Password reset via email |
-| User profile editing | Account deletion |
-| Responsive design (mobile, tablet, desktop) | Native mobile app |
-| Custom 404/500 error pages | Payment or subscription features |
+| In Scope                                    | Out of Scope                                |
+| ------------------------------------------- | ------------------------------------------- |
+| F1 blog with full CRUD for comments         | User-created blog posts (admin only)        |
+| Like/unlike posts                           | Social media login (Google, Facebook)       |
+| Race prediction system (pole + podium)      | Fastest lap or sprint race predictions      |
+| Automatic scoring with points               | Real-time live race data or API integration |
+| Leaderboard and rankings                    | Season-long championship predictions        |
+| Personal dashboard (My Garage)              | Password reset via email                    |
+| User profile editing                        | Account deletion                            |
+| Responsive design (mobile, tablet, desktop) | Native mobile app                           |
+| Custom 404/500 error pages                  | Payment or subscription features            |
 
 ---
 
@@ -61,49 +62,49 @@ User stories were managed using a GitHub Projects board with MoSCoW prioritisati
 
 ### Authentication
 
-| # | User Story | Acceptance Criteria |
-|---|-----------|-------------------|
-| 1 | As a user, I can register an account, so that I can create posts and interact with the site | User can create an account with username, email, and password · Account is stored in the database · User is redirected after successful registration |
-| 2 | As a user, I can log in, so that I can access my account | User can log in with valid credentials · Invalid login shows an error message · User is redirected after login |
-| 3 | As a user, I can log out, so that I can securely end my session | User can log out successfully · Session is cleared · User is redirected to homepage |
+| #   | User Story                                                                                  | Acceptance Criteria                                                                                                                                  |
+| --- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | As a user, I can register an account, so that I can create posts and interact with the site | User can create an account with username, email, and password · Account is stored in the database · User is redirected after successful registration |
+| 2   | As a user, I can log in, so that I can access my account                                    | User can log in with valid credentials · Invalid login shows an error message · User is redirected after login                                       |
+| 3   | As a user, I can log out, so that I can securely end my session                             | User can log out successfully · Session is cleared · User is redirected to homepage                                                                  |
 
 ### Blog
 
-| # | User Story | Acceptance Criteria |
-|---|-----------|-------------------|
-| 4 | As a user, I can view a list of posts, so that I can browse content | Given more than one post in the database, these multiple posts are listed · When a user opens the main page a list of posts is seen |
-| 5 | As a user, I can view a full post, so that I can read it in detail | Clicking a post opens full content page · Post displays title, content, author, and date |
-| 6 | As a logged-in user, I can add a comment to a post, so that I can join the discussion | User can submit a comment on a post · Comment is linked to the post and user · Comment is saved in the database |
-| 7 | As a logged-in user, I can edit my comment, so that my comment is relevant | User can edit and update their own comments · Comment is updated in the database · Success message when comment is updated |
-| 8 | As a user, I can delete my comment, so that I can remove it if needed | User can delete their own comment · Success message appears when complete · Comment is removed from the database |
-| 11 | As a logged-in user, I can like a post, so that I can show my appreciation for the content | A logged-in user can click a "Like" button on a post · A like is saved in the database · The user can only like a post once · The like count updates immediately after liking |
-| 12 | As a user, I can remove my like from a post, so that I can change my preference | A logged-in user can click an "Unlike" button · The like is removed from the database · The like count updates immediately after unliking |
-| 13 | As an admin, I can upload an image when creating a post, so that posts are more visually engaging | Admin can upload an image via the Django admin panel · Image is linked to the correct post · Image is stored using Cloudinary |
-| 14 | As a user, I can see images on posts, so that the content is more engaging and easier to understand | Each post displays its associated image · Images render correctly on all screen sizes · A default placeholder is shown if no image is uploaded |
+| #   | User Story                                                                                          | Acceptance Criteria                                                                                                                                                           |
+| --- | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 4   | As a user, I can view a list of posts, so that I can browse content                                 | Given more than one post in the database, these multiple posts are listed · When a user opens the main page a list of posts is seen                                           |
+| 5   | As a user, I can view a full post, so that I can read it in detail                                  | Clicking a post opens full content page · Post displays title, content, author, and date                                                                                      |
+| 6   | As a logged-in user, I can add a comment to a post, so that I can join the discussion               | User can submit a comment on a post · Comment is linked to the post and user · Comment is saved in the database                                                               |
+| 7   | As a logged-in user, I can edit my comment, so that my comment is relevant                          | User can edit and update their own comments · Comment is updated in the database · Success message when comment is updated                                                    |
+| 8   | As a user, I can delete my comment, so that I can remove it if needed                               | User can delete their own comment · Success message appears when complete · Comment is removed from the database                                                              |
+| 11  | As a logged-in user, I can like a post, so that I can show my appreciation for the content          | A logged-in user can click a "Like" button on a post · A like is saved in the database · The user can only like a post once · The like count updates immediately after liking |
+| 12  | As a user, I can remove my like from a post, so that I can change my preference                     | A logged-in user can click an "Unlike" button · The like is removed from the database · The like count updates immediately after unliking                                     |
+| 13  | As an admin, I can upload an image when creating a post, so that posts are more visually engaging   | Admin can upload an image via the Django admin panel · Image is linked to the correct post · Image is stored using Cloudinary                                                 |
+| 14  | As a user, I can see images on posts, so that the content is more engaging and easier to understand | Each post displays its associated image · Images render correctly on all screen sizes · A default placeholder is shown if no image is uploaded                                |
 
 ### UX
 
-| # | User Story | Acceptance Criteria |
-|---|-----------|-------------------|
-| 9 | As a user, I can use the site on all devices, so that I can access from anywhere | Site is fully responsive · Layout adapts to mobile, tablet, and desktop |
-| 10 | As a user, I need clear and simple navigation, so that I can move around the site easily | Navigation bar is visible on all pages · Links to key pages are included |
-| 28 | As a user, I can see a custom 404 page when I visit a page that does not exist, so that I understand the page cannot be found and can navigate back to the site | A custom 404 page is displayed for invalid URLs · The page explains that the requested page was not found · A link is provided to return to the homepage |
+| #   | User Story                                                                                                                                                      | Acceptance Criteria                                                                                                                                      |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9   | As a user, I can use the site on all devices, so that I can access from anywhere                                                                                | Site is fully responsive · Layout adapts to mobile, tablet, and desktop                                                                                  |
+| 10  | As a user, I need clear and simple navigation, so that I can move around the site easily                                                                        | Navigation bar is visible on all pages · Links to key pages are included                                                                                 |
+| 28  | As a user, I can see a custom 404 page when I visit a page that does not exist, so that I understand the page cannot be found and can navigate back to the site | A custom 404 page is displayed for invalid URLs · The page explains that the requested page was not found · A link is provided to return to the homepage |
 
 ### Predictions
 
-| # | User Story | Acceptance Criteria |
-|---|-----------|-------------------|
-| 15 | As a user, I can view upcoming Formula 1 races, so that I can make predictions before the race weekend begins | Users can see a list of upcoming races · Each race displays its name and date · Logged-in users can select a race to view prediction options |
-| 16 | As a logged-in user, I can predict pole position and podium finishers, so that I can compete against other users | Logged-in users can submit predictions · Users can choose pole position, 1st, 2nd, and 3rd place drivers · Predictions are saved to the database · Users receive feedback confirming submission |
-| 17 | As a logged-in user, I can edit my prediction before the race begins, so that I can update my choices | Users can edit their own predictions · Predictions cannot be edited after the race deadline · Updated predictions save correctly |
-| 18 | As an admin, I can record prediction scores, so that users can compete in a leaderboard | Predictions receive points based on accuracy · Scores are stored in the database |
-| 19 | As a logged-in user, I can access a personal dashboard, so that I can view my prediction stats | Logged-in users can access dashboard from navbar · Dashboard displays prediction stats · Dashboard loads without errors |
-| 20 | As a user, I can view a leaderboard, so that I can compare my prediction performance against other users | Leaderboard displays users ranked by score · Scores update when prediction results are entered · Users can see their ranking position |
-| 21 | As a registered user, I can see my total points, so that I can track my performance | Total points are displayed clearly · Points updated automatically after race scoring · Points reflect all completed race weekends |
-| 22 | As a registered user, I can see my current leaderboard rank, so that I can see where I am in the standings | Rank is displayed on dashboard · Rank updates automatically after scoring · Rank is based on total accumulated points |
-| 23 | As a registered user, I can view my previous predictions, so that I can review my past performance quickly | Previous race predictions are listed chronologically · Each prediction displays race name and score earned · Users can access prediction details |
-| 24 | As a registered user, I can see whether I have submitted a prediction, so that I know if action is required | Upcoming race is displayed · Prediction status shows submitted/not submitted · Edit link available before deadline |
-| 25 | As a registered user, I can update my profile, so that I can personalise my account | User can edit profile fields · Changes save successfully · Invalid submissions show validation errors |
+| #   | User Story                                                                                                       | Acceptance Criteria                                                                                                                                                                             |
+| --- | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 15  | As a user, I can view upcoming Formula 1 races, so that I can make predictions before the race weekend begins    | Users can see a list of upcoming races · Each race displays its name and date · Logged-in users can select a race to view prediction options                                                    |
+| 16  | As a logged-in user, I can predict pole position and podium finishers, so that I can compete against other users | Logged-in users can submit predictions · Users can choose pole position, 1st, 2nd, and 3rd place drivers · Predictions are saved to the database · Users receive feedback confirming submission |
+| 17  | As a logged-in user, I can edit my prediction before the race begins, so that I can update my choices            | Users can edit their own predictions · Predictions cannot be edited after the race deadline · Updated predictions save correctly                                                                |
+| 18  | As an admin, I can record prediction scores, so that users can compete in a leaderboard                          | Predictions receive points based on accuracy · Scores are stored in the database                                                                                                                |
+| 19  | As a logged-in user, I can access a personal dashboard, so that I can view my prediction stats                   | Logged-in users can access dashboard from navbar · Dashboard displays prediction stats · Dashboard loads without errors                                                                         |
+| 20  | As a user, I can view a leaderboard, so that I can compare my prediction performance against other users         | Leaderboard displays users ranked by score · Scores update when prediction results are entered · Users can see their ranking position                                                           |
+| 21  | As a registered user, I can see my total points, so that I can track my performance                              | Total points are displayed clearly · Points updated automatically after race scoring · Points reflect all completed race weekends                                                               |
+| 22  | As a registered user, I can see my current leaderboard rank, so that I can see where I am in the standings       | Rank is displayed on dashboard · Rank updates automatically after scoring · Rank is based on total accumulated points                                                                           |
+| 23  | As a registered user, I can view my previous predictions, so that I can review my past performance quickly       | Previous race predictions are listed chronologically · Each prediction displays race name and score earned · Users can access prediction details                                                |
+| 24  | As a registered user, I can see whether I have submitted a prediction, so that I know if action is required      | Upcoming race is displayed · Prediction status shows submitted/not submitted · Edit link available before deadline                                                                              |
+| 25  | As a registered user, I can update my profile, so that I can personalise my account                              | User can edit profile fields · Changes save successfully · Invalid submissions show validation errors                                                                                           |
 
 ---
 
@@ -127,6 +128,7 @@ This project was developed using Agile methodology, with a GitHub Projects Kanba
 ### Target Audience
 
 This application is aimed at:
+
 - Formula 1 fans
 - Sports prediction enthusiasts
 - Users who enjoy competitive leaderboard systems
@@ -140,6 +142,7 @@ Wireframes were created in Lucidchart for both desktop and mobile views, coverin
 <summary>View All Wireframes (Desktop & Mobile)</summary>
 
 ![Wireframes](documents/wireframes/f1-blog-wireframes.png)
+
 </details>
 
 ### Colour Scheme
@@ -148,14 +151,14 @@ The colour palette was inspired by Formula 1's brand identity — bold reds agai
 
 ![Colour Palette](documents/images/colour-palette.png)
 
-| Colour | Hex | Usage |
-|--------|-----|-------|
-| Black | `#1a1a1a` | Navbar, footer, headings, body text |
-| Dark Grey | `#2d2d2d` | Secondary dark elements |
-| F1 Red | `#e10600` | Buttons, links, accents, badges |
-| Red Hover | `#b30500` | Button hover states |
-| Light Grey | `#f5f5f5` | Page background |
-| White | `#ffffff` | Card backgrounds, text on dark elements |
+| Colour     | Hex       | Usage                                   |
+| ---------- | --------- | --------------------------------------- |
+| Black      | `#1a1a1a` | Navbar, footer, headings, body text     |
+| Dark Grey  | `#2d2d2d` | Secondary dark elements                 |
+| F1 Red     | `#e10600` | Buttons, links, accents, badges         |
+| Red Hover  | `#b30500` | Button hover states                     |
+| Light Grey | `#f5f5f5` | Page background                         |
+| White      | `#ffffff` | Card backgrounds, text on dark elements |
 
 ### Typography
 
@@ -172,10 +175,12 @@ The database schema was designed in Lucidchart showing all models and their rela
 The project uses 8 database tables across 2 apps:
 
 **Blog App:**
+
 - `Post` — Blog articles with title, content, author, featured image, and likes
 - `Comment` — User comments linked to posts
 
 **Predictions App:**
+
 - `Driver` — F1 drivers (name, team, number)
 - `Race` — Race events with prediction deadlines
 - `Prediction` — User predictions for pole/P1/P2/P3 (unique per user per race)
@@ -183,6 +188,7 @@ The project uses 8 database tables across 2 apps:
 - `UserProfile` — Extended user info (display name, favourite team/driver)
 
 **Django Built-in:**
+
 - `User` — Authentication (username, email, password)
 
 ### Custom Models
@@ -190,6 +196,7 @@ The project uses 8 database tables across 2 apps:
 The application includes several original custom models created specifically for the race prediction system.
 
 Key custom models include:
+
 - `Prediction`
 - `Race`
 - `RaceResult`
@@ -204,6 +211,7 @@ The `Prediction` model is the core custom feature of the application. It links u
 ### Existing Features
 
 #### Navigation
+
 - Responsive Bootstrap navbar with links to all sections
 - Active page highlighted with `aria-current="page"` for accessibility
 - Conditional links based on authentication status (Login/Register vs My Garage/Logout)
@@ -213,9 +221,11 @@ The `Prediction` model is the core custom feature of the application. It links u
 
 ![Navbar](documents/features/navbar.png)
 ![Mobile Navbar](documents/features/mobile-navbar.png)
+
 </details>
 
 #### Footer
+
 - Social media links (Facebook, Instagram, X, LinkedIn) with icon-only design
 - All external links open in new tabs with `rel="noopener"` for security
 - Developer credit with link to GitHub profile
@@ -224,9 +234,11 @@ The `Prediction` model is the core custom feature of the application. It links u
 <summary>Footer Screenshot</summary>
 
 ![Footer](documents/features/footer.png)
+
 </details>
 
 #### Blog
+
 - **Post List** — Paginated list of blog posts with excerpts and featured images
 - **Post Detail** — Full article view with comments section and like button
 - **Comments** — Authenticated users can create, edit, and delete their own comments
@@ -238,9 +250,11 @@ The `Prediction` model is the core custom feature of the application. It links u
 <summary>Post Detail Screenshot</summary>
 
 ![Post Detail](documents/features/post-detail-like-and-comments.png)
+
 </details>
 
 #### Race Predictions
+
 - **Race List** — View upcoming races with dates and prediction status
 - **Submit Prediction** — Choose pole position, P1, P2, and P3 from a dropdown of current drivers
 - **Edit Prediction** — Update picks any time before the prediction deadline
@@ -252,12 +266,12 @@ The `Prediction` model is the core custom feature of the application. It links u
 
 Users earn points based on prediction accuracy:
 
-| Prediction | Points |
-|------------|--------|
-| Correct Pole Position | 5 |
-| Correct P1 (Winner) | 10 |
-| Correct P2 | 5 |
-| Correct P3 | 3 |
+| Prediction            | Points |
+| --------------------- | ------ |
+| Correct Pole Position | 5      |
+| Correct P1 (Winner)   | 10     |
+| Correct P2            | 5      |
+| Correct P3            | 3      |
 
 Maximum possible score per race: **23 points**. Scores are automatically calculated when race results are entered through the admin panel.
 
@@ -267,9 +281,11 @@ Maximum possible score per race: **23 points**. Scores are automatically calcula
 ![Race List](documents/features/race-list.png)
 ![Race Detail](documents/features/race-detail.png)
 ![Leaderboard](documents/features/leaderboard.png)
+
 </details>
 
 #### User Profile
+
 - **My Garage (Dashboard)** — Personal stats: total points, league position, prediction history, upcoming race status
 - **Edit Profile** — Update display name, favourite team, and favourite driver
 
@@ -278,9 +294,11 @@ Maximum possible score per race: **23 points**. Scores are automatically calcula
 
 ![Profile Dashboard](documents/features/profile-one.png)
 ![Profile History](documents/features/profile-two.png)
+
 </details>
 
 #### Authentication
+
 - Register, login, and logout functionality
 - Django's built-in authentication with styled templates
 
@@ -288,9 +306,11 @@ Maximum possible score per race: **23 points**. Scores are automatically calcula
 <summary>Login Screenshot</summary>
 
 ![Login](documents/features/log-in.png)
+
 </details>
 
 #### Admin Panel
+
 - Full CRUD for posts, comments, races, drivers, and results
 - Custom admin registration for all models
 
@@ -298,18 +318,22 @@ Maximum possible score per race: **23 points**. Scores are automatically calcula
 <summary>Admin Panel Screenshot</summary>
 
 ![Admin Panel](documents/features/admin.png)
+
 </details>
 
 #### Error Handling
+
 - Custom 404 and 500 error pages with friendly messages and navigation back to home
 
 <details>
 <summary>404 Page Screenshot</summary>
 
 ![Custom 404 Page](documents/features/error-page.png)
+
 </details>
 
 #### Accessibility & SEO
+
 - Semantic HTML structure (header, main, footer landmarks)
 - `aria-current="page"` on active navigation links
 - `aria-label` on icon-only links (social media footer links)
@@ -329,6 +353,7 @@ The site is fully responsive across all devices. Below are mobile views of key p
 ![Mobile - Post Detail](documents/features/mobile-post-detail.png)
 ![Mobile - Race Detail](documents/features/mobile-race-detail.png)
 ![Mobile - Leaderboard](documents/features/mobile-leaderboard.png)
+
 </details>
 
 ### Future Features
@@ -340,18 +365,19 @@ The site is fully responsive across all devices. Below are mobile views of key p
 - Social sharing of predictions
 - Push notifications when results are entered
 
-
 ---
 
 ## Technologies Used
 
 ### Languages
+
 - Python 3.13
 - HTML5
 - CSS3
 - JavaScript (ES6)
 
 ### Frameworks & Libraries
+
 - [Django 5.2](https://www.djangoproject.com/) — Python web framework
 - [Bootstrap 5.3.3](https://getbootstrap.com/) — Responsive front-end framework
 - [Bootstrap Icons 1.11.3](https://icons.getbootstrap.com/) — Icon library
@@ -364,6 +390,7 @@ The site is fully responsive across all devices. Below are mobile views of key p
 - [psycopg2](https://pypi.org/project/psycopg2/) — PostgreSQL adapter
 
 ### Tools & Services
+
 - [GitHub](https://github.com/) — Version control and project management
 - [Heroku](https://heroku.com/) — Cloud deployment platform
 - [PostgreSQL](https://www.postgresql.org/) — Production database (via Heroku)
@@ -429,7 +456,7 @@ This project is deployed on Heroku. Steps to deploy:
 6. Run migrations: `heroku run python manage.py migrate`
 7. Collect static files: `heroku run python manage.py collectstatic --noinput`
 8. Create a superuser: `heroku run python manage.py createsuperuser`
-9. Seed drivers: `heroku run python manage.py seed_drivers`
+9. Add drivers and races via the Django admin panel at `/admin/`
 
 ### Forking the Repository
 
@@ -442,6 +469,7 @@ This project is deployed on Heroku. Steps to deploy:
 1. Navigate to the [GitHub repository](https://github.com/garethrogers28/f1-blog)
 2. Click the **Code** button and copy the HTTPS URL
 3. In your terminal:
+
    ```bash
    git clone https://github.com/garethrogers28/f1-blog.git
    cd f1-blog
@@ -449,9 +477,11 @@ This project is deployed on Heroku. Steps to deploy:
    source .venv/bin/activate  # or .venv\Scripts\activate on Windows
    pip install -r requirements.txt
    ```
+
    This will install all project dependencies listed in the requirements file.
 
 4. Create an `env.py` file in the root directory:
+
    ```python
    import os
 
@@ -462,29 +492,34 @@ This project is deployed on Heroku. Steps to deploy:
    os.environ['CLOUDINARY_API_SECRET'] = 'your-api-secret'
    os.environ['DEBUG'] = 'True'
    ```
+
    Ensure `env.py` is included in `.gitignore` so sensitive credentials are not exposed publicly.
+
 5. Run migrations and start the server:
    ```bash
    python manage.py migrate
-   python manage.py seed_drivers
    python manage.py createsuperuser
    python manage.py runserver
    ```
+6. Add drivers and races via the Django admin panel at `http://127.0.0.1:8000/admin/`
 
 ---
 
 ## Credits
 
 ### Content
+
 - Blog post content written by the developer using AI assistance
 - F1 driver data sourced from the official [Formula 1 website](https://www.formula1.com/)
 
 ### Code
+
 - Django documentation for authentication and class-based views
 - Bootstrap documentation for responsive components
 - Code Institute course material for project structure and deployment guidance
 
 ### Acknowledgements
+
 - Code Institute for the course content and assessment framework
 - The F1 fan community for inspiration
 
