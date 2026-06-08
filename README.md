@@ -64,7 +64,7 @@ User stories were managed using a GitHub Projects board with MoSCoW prioritisati
 
 | #   | User Story                                                                                  | Acceptance Criteria                                                                                                                                  |
 | --- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | As a user, I can register an account, so that I can create posts and interact with the site | User can create an account with username, email, and password · Account is stored in the database · User is redirected after successful registration |
+| 1   | As a user, I can register an account, so that I can interact with the site | User can create an account with username, email, and password · Account is stored in the database · User is redirected after successful registration |
 | 2   | As a user, I can log in, so that I can access my account                                    | User can log in with valid credentials · Invalid login shows an error message · User is redirected after login                                       |
 | 3   | As a user, I can log out, so that I can securely end my session                             | User can log out successfully · Session is cleared · User is redirected to homepage                                                                  |
 
@@ -387,7 +387,7 @@ The site is fully responsive across all devices. Below are mobile views of key p
 - [Pillow](https://pillow.readthedocs.io/) — Python image processing library
 - [WhiteNoise](https://whitenoise.readthedocs.io/) — Static file serving in production
 - [dj-database-url](https://pypi.org/project/dj-database-url/) — Database URL parsing
-- [psycopg2](https://pypi.org/project/psycopg2/) — PostgreSQL adapter
+- [psycopg2-binary](https://pypi.org/project/psycopg2-binary/) — PostgreSQL adapter
 
 ### Tools & Services
 
@@ -450,6 +450,7 @@ This project is deployed on Heroku. Steps to deploy:
    | `CLOUDINARY_API_KEY` | Your Cloudinary API key |
    | `CLOUDINARY_API_SECRET` | Your Cloudinary API secret |
    | `ALLOWED_HOSTS` | Your Heroku app URL (e.g. `f1-blog-ci-9849428ab6fd.herokuapp.com`) |
+   | `CSRF_TRUSTED_ORIGINS` | `https://your-app-name.herokuapp.com` |
    | `DEBUG` | `False` |
 4. In the **Deploy** tab, connect to your GitHub repository
 5. Enable **Automatic Deploys** from the `main` branch (or deploy manually)
@@ -490,6 +491,7 @@ This project is deployed on Heroku. Steps to deploy:
    os.environ['CLOUDINARY_CLOUD_NAME'] = 'your-cloud-name'
    os.environ['CLOUDINARY_API_KEY'] = 'your-api-key'
    os.environ['CLOUDINARY_API_SECRET'] = 'your-api-secret'
+   os.environ['CSRF_TRUSTED_ORIGINS'] = 'http://localhost:8000,http://127.0.0.1:8000'
    os.environ['DEBUG'] = 'True'
    ```
 
