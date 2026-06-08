@@ -16,7 +16,7 @@
                         <textarea name="body" id="id_body" class="form-control" rows="3" required>{{ form.instance.body }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Update</button>
-                    <a href="{% url 'post_detail' comment.post.slug %}" class="btn btn-outline-primary">Cancel</a>
+                    <a href="{% url 'post_detail' comment.post.slug %}" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
         </div>
