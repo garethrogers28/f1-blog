@@ -4,14 +4,22 @@
 {% block meta_description %}Edit your comment on F1 Hub.{% endblock %}
 
 {% block content %}
-<h1>Edit Comment</h1>
-<form method="post">
-    {% csrf_token %}
-    <div class="mb-3">
-        <label for="id_body" class="form-label">Comment</label>
-        <textarea name="body" id="id_body" class="form-control" rows="3" required>{{ form.instance.body }}</textarea>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h1>Edit Comment</h1>
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_body" class="form-label">Comment</label>
+                        <textarea name="body" id="id_body" class="form-control" rows="3" required>{{ form.instance.body }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="{% url 'post_detail' comment.post.slug %}" class="btn btn-outline-primary">Cancel</a>
+                </form>
+            </div>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary">Update</button>
-    <a href="{% url 'post_detail' comment.post.slug %}" class="btn btn-secondary">Cancel</a>
-</form>
+</div>
 {% endblock %}
