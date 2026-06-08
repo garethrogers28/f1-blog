@@ -21,7 +21,7 @@ motorsport.{% endblock %}
             <img src="{% static 'images/placeholder.svg' %}" class="card-img-top" alt="No image available" width="600"
                 height="338">
             {% endif %}
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
                 <h2 class="card-title h5">
                     <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none">{{ post.title }}</a>
                 </h2>
@@ -31,7 +31,7 @@ motorsport.{% endblock %}
                 {% else %}
                 <p class="card-text">{{ post.content|truncatewords:30 }}</p>
                 {% endif %}
-                <a href="{% url 'post_detail' post.slug %}" class="btn btn-outline-primary btn-sm">Read more <span
+                <a href="{% url 'post_detail' post.slug %}" class="btn btn-outline-primary btn-sm mt-auto align-self-start">Read more <span
                         class="visually-hidden">about {{ post.title }}</span></a>
             </div>
         </div>
