@@ -10,7 +10,7 @@ Return to [README.md](README.md)
 
 | #   | User Story          | Test                          | Steps                                                                | Expected Result                                           | Actual Result | Pass/Fail |
 | --- | ------------------- | ----------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------- | ------------- | --------- |
-| 1   | Register an account | Create a new account          | Navigate to Register page → Enter username, email, password → Submit | Account created, user redirected to home page             | As expected   | Pass      |
+| 1   | Register an account | Create a new account          | Navigate to Register page → Enter username, email, password → Submit | Account created, user redirected to login page            | As expected   | Pass      |
 | 1   | Register an account | Duplicate username rejected   | Try to register with an existing username                            | Error message displayed, account not created              | As expected   | Pass      |
 | 1   | Register an account | Password mismatch rejected    | Enter different passwords in password fields                         | Error message displayed                                   | As expected   | Pass      |
 | 2   | Log in              | Log in with valid credentials | Navigate to Login → Enter valid username/password → Submit           | User logged in, redirected to home page                   | As expected   | Pass      |
