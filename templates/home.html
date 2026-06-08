@@ -3,7 +3,8 @@
 {% load cloudinary_filters %}
 
 {% block title %}Home | F1 Hub{% endblock %}
-{% block meta_description %}F1 Hub - Latest Formula 1 news, race predictions, and opinions from the world of motorsport.{% endblock %}
+{% block meta_description %}F1 Hub - Latest Formula 1 news, race predictions, and opinions from the world of
+motorsport.{% endblock %}
 
 {% block content %}
 <h1 class="text-center">Welcome to F1 Hub</h1>
@@ -50,7 +51,8 @@
         {% endif %}
         {% for num in posts.paginator.page_range %}
         <li class="page-item {% if posts.number == num %}active{% endif %}">
-            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            <a class="page-link" href="?page={{ num }}"
+                {% if posts.number == num %}aria-current="page"{% endif %}>{{ num }}</a>
         </li>
         {% endfor %}
         {% if posts.has_next %}
