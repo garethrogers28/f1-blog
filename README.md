@@ -517,10 +517,18 @@ This project is deployed on Heroku. Steps to deploy:
 - Django documentation for authentication and class-based views
 - Bootstrap documentation for responsive components
 - Code Institute course material for project structure and deployment guidance
+- [GitHub Copilot](https://github.com/features/copilot) — AI assistant used for code guidance, debugging, and documentation support
+- [Google Fonts](https://fonts.google.com/) — Exo 2 and Roboto typefaces
+- [Favicon.io](https://favicon.io/) — Chequered flag favicon generation
 
 ### Acknowledgements
 
 - Code Institute for the course content and assessment framework
 - The F1 fan community for inspiration
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) — WCAG contrast testing
+- [W3C HTML Validator](https://validator.w3.org/) — HTML validation
+- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) — CSS validation
+- [JSHint](https://jshint.com/) — JavaScript validation
+- [CI Python Linter](https://pep8ci.herokuapp.com/) — Python PEP8 validation
 
 ---
